@@ -10,6 +10,7 @@ Public Class FormAdmisions
     Dim username As String = "sa"
     Dim password As String = "12345678"
     Dim database As String = "InterMetro"
+
     Private Sub FormAdmisions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Validation does not let user enter wrong information in these fields
         'Validation control is in TextBoxValidation.vb
@@ -52,23 +53,8 @@ Public Class FormAdmisions
     End Sub
 
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
-        txtFirstName.Text = ""
-        txtLastName.Text = ""
-        txtAge.Text = ""
-        txtEmail.Text = ""
-        txtPhone.Text = ""
-        ddlSex.Text = "Choose one option:"
-        txtAddress.Text = ""
-        txtCity.Text = ""
-        ddlState.Text = "Choose one option:"
-        txtZipcode.Text = ""
-        ddlCountry.Text = "Choose one option:"
-        txtIncome.Text = ""
-        ddlMajor.Text = "Choose one option:"
-        ddlCovid.Text = "Choose one option:"
-
-        Me.Dispose()
         FormLogin.Show()
+        Me.Close()
     End Sub
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
@@ -80,7 +66,7 @@ Public Class FormAdmisions
         Dim ctrl As Control = Me.GetNextControl(Me, True)
         Do Until ctrl Is Nothing
             If TypeOf ctrl Is Label Then
-                ctrl.ForeColor = Drawing.Color.Black
+                ctrl.ForeColor = Color.FromArgb(48, 48, 48)
             End If
             ctrl = Me.GetNextControl(ctrl, True)
         Loop
@@ -126,60 +112,95 @@ Public Class FormAdmisions
 
             MsgBox("The fields highlighted in red are required.", 48, "Error")
         Else
-            Dim rand As New Random          'Creates random number generator
-            Dim randomnum As String         'Temporarily stores one random number generated in a string
-            Dim randomid As String          'Accumulator of temporary string numbers
-            Dim sqlTable As New DataTable   'invisible table for temporary data to see if randomid is already a PersonId in Person table
-            Dim rows() As DataRow           'Row in the invisible sqlTable
 
-            Do
-                randomid = "M"   'All randomly generated IDs must start with M in the metro campus
+            'To pass correct address to the ConfirmInfo function below depending on whether the person's country is United States or not
+            Dim address As String
+            If ddlState.Text = "" Then
+                address = txtAddress.Text + ", " + txtCity.Text + ", " + ddlCountry.Text + " " + txtZipcode.Text
+            Else
+                address = txtAddress.Text + ", " + txtCity.Text + ", " + ddlState.Text + ", " + ddlCountry.Text + " " + txtZipcode.Text
+            End If
 
-                'Deleting previous query information from the sqlTable if I already iterated once through the Do Loop and randomid
-                'is already a PersonId on the Person table.  Unlikely to happen, as random code will be between M00000000 and M99999999
-                sqlTable.Clear()
+            'If the user didn't leave any required fields empty, the information is saved to the StudentInfo text box
+            txtStudentInfo.Text = "Is this information correct?" & vbNewLine &
+                                "" & vbNewLine &
+                                "NAME: " & txtFirstName.Text & " " & txtLastName.Text & "" & vbNewLine &
+                                "AGE: " & txtAge.Text & "" & vbNewLine &
+                                "SEX: " & ddlSex.Text & "" & vbNewLine &
+                                "EMAIL: " & txtEmail.Text & "" & vbNewLine &
+                                "PHONE: " & txtPhone.Text & "" & vbNewLine &
+                                "ADDRESS: " & address & "" & vbNewLine &
+                                "MAJOR: " & ddlMajor.Text & "" & vbNewLine &
+                                "VACCINATION STATUS: " & ddlCovid.Text & "" & vbNewLine &
+                                "YEARLY HOUSEHOLD INCOME: $" & txtIncome.Text & ""
 
-                'Generates 8 random numbers between 0 and 9 and adds them to randomid after the "M" character to generate a random ID
-                'number for the person we're adding to Person table that starts with "M" and then 8 random numbers (i.e. "M00522144)
-                For count = 1 To 8
-                    randomnum = rand.Next(0, 10)
-                    randomid += randomnum
-                Next
+            'I am using this form as a custom MsgBox as the original MsgBox' font size is too small
+            'In it I am putting StudentInfo's textbox string and setting it on a label and adjusting font size
+            FormCustomMsgBox.Show()
+        End If
+    End Sub
 
-                sqlConn.Open()
-                sqlCmd.Connection = sqlConn
-                'If there's a record in Person table that already has randomly generated ID, selects it
-                sqlCmd.CommandText = "SELECT * From Person WHERE (PersonId = '" & randomid & "')"
-                sqlReader = sqlCmd.ExecuteReader
+    Public Sub EnterStudentInfo()
+        FormCustomMsgBox.Close()
 
-                'If there is a selected record, loads it into invisible sqlTable
-                sqlTable.Load(sqlReader)
-                sqlReader.Close()
-                sqlConn.Close()
+        Dim rand As New Random          'Creates random number generator
+        Dim randomnum As String         'Temporarily stores one random number generated in a string
+        Dim randomid As String          'Accumulator of temporary string numbers
+        Dim sqlTable As New DataTable   'invisible table for temporary data to see if randomid is already a PersonId in Person table
+        Dim rows() As DataRow           'Row in the invisible sqlTable
 
-                'Adds a row to the sqlTable with the record from the Person table with the PersonId same as the randomid (very unlikely)
-                rows = sqlTable.Select("[PersonId]= '" & randomid & "'")
+        Do
+            randomid = "M"   'All randomly generated IDs must start with M in the metro campus
 
-                'If the invisible sqlTable has 1 row, this means that there is already a record with a PersonId the same as randomid, so
-                'we cannot assign the randomly generated ID to the new person we are trying to add to the Person table.
-                'The loop will run again until the row count is not > 0 (until the randomid is not a PersonId already in Person table)
-            Loop While (rows.Count > 0)
+            'Deleting previous query information from the sqlTable if I already iterated once through the Do Loop and randomid
+            'is already a PersonId on the Person table.  Unlikely to happen, as random code will be between M00000000 and M99999999
+            sqlTable.Clear()
 
+            'Generates 8 random numbers between 0 and 9 and adds them to randomid after the "M" character to generate a random ID
+            'number for the person we're adding to Person table that starts with "M" and then 8 random numbers (i.e. "M00522144)
+            For count = 1 To 8
+                randomnum = rand.Next(0, 10)
+                randomid += randomnum
+            Next
 
             sqlConn.Open()
             sqlCmd.Connection = sqlConn
-            sqlCmd.CommandText = "INSERT INTO Person(PersonId, FirstName, LastName, Age, Email, Telephone, Sex, Address, City, State,
+            'If there's a record in Person table that already has randomly generated ID, selects it
+            sqlCmd.CommandText = "SELECT * From Person WHERE (PersonId = '" & randomid & "')"
+            sqlReader = sqlCmd.ExecuteReader
+
+            'If there is a selected record, loads it into invisible sqlTable
+            sqlTable.Load(sqlReader)
+            sqlReader.Close()
+            sqlConn.Close()
+
+            'Adds a row to the sqlTable with the record from the Person table with the PersonId same as the randomid (very unlikely)
+            rows = sqlTable.Select("[PersonId]= '" & randomid & "'")
+
+            'If the invisible sqlTable has 1 row, this means that there is already a record with a PersonId the same as randomid, so
+            'we cannot assign the randomly generated ID to the new person we are trying to add to the Person table.
+            'The loop will run again until the row count is not > 0 (until the randomid is not a PersonId already in Person table)
+        Loop While (rows.Count > 0)
+
+        sqlConn.Open()
+        sqlCmd.Connection = sqlConn
+        sqlCmd.CommandText = "INSERT INTO Person(PersonId, FirstName, LastName, Age, Email, Telephone, Sex, Address, City, State,
             Zipcode, Country, HouseIncome, Major, Vaccination)
             VALUES('" & randomid & "','" & txtFirstName.Text & "','" & txtLastName.Text & "','" & txtAge.Text & "','" & txtEmail.Text & "',
             '" & txtPhone.Text & "','" & ddlSex.Text & "','" & txtAddress.Text & "','" & txtCity.Text & "','" & ddlState.Text & "',
             '" & txtZipcode.Text & "','" & ddlCountry.Text & "','" & txtIncome.Text & "','" & ddlMajor.Text & "','" & ddlCovid.Text & "')"
 
-            sqlReader = sqlCmd.ExecuteReader
-            sqlReader.Close()
-            sqlConn.Close()
+        sqlReader = sqlCmd.ExecuteReader
+        sqlReader.Close()
+        sqlConn.Close()
 
-            MsgBox("Student's information has been submitted." & vbCrLf & "Student's ID number: '" & randomid & "' ", 64, "Information")
-        End If
+        MsgBox("Student's information successfully entered." & vbNewLine & "Student's ID number: '" & randomid & "' ", 64, "Information")
+    End Sub
+
+    'Does not let user write text on the drop down boxes, only select an option
+    Private Sub ddl_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ddlSex.KeyPress, ddlState.KeyPress,
+    ddlCountry.KeyPress, ddlMajor.KeyPress, ddlCovid.KeyPress
+        e.Handled = True
     End Sub
 
     'Turns the State dropdownlist on/off depending on whether the selected country is United States or not
@@ -190,13 +211,7 @@ Public Class FormAdmisions
         ElseIf Not ddlCountry.Text = "United States" Then
             ddlState.Enabled = False
             ddlState.Text = ""
-            lblState.ForeColor = Drawing.Color.Black
+            lblState.ForeColor = Color.FromArgb(48, 48, 48)
         End If
-    End Sub
-
-    'Does not let user write text on the drop down boxes, only select an option
-    Private Sub ddl_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ddlSex.KeyPress, ddlState.KeyPress,
-    ddlCountry.KeyPress, ddlMajor.KeyPress, ddlCovid.KeyPress
-        e.Handled = True
     End Sub
 End Class

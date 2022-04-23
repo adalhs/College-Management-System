@@ -56,7 +56,10 @@ Partial Class FormAdmisions
         Me.lblIncome = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtStudentInfo = New System.Windows.Forms.TextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,7 +67,8 @@ Partial Class FormAdmisions
         '
         'btnExit
         '
-        Me.btnExit.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnExit.Location = New System.Drawing.Point(755, 521)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(136, 39)
@@ -76,6 +80,7 @@ Partial Class FormAdmisions
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Georgia", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(20, 13)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(480, 39)
@@ -86,6 +91,7 @@ Partial Class FormAdmisions
         '
         Me.lblFirstName.AutoSize = True
         Me.lblFirstName.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFirstName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblFirstName.Location = New System.Drawing.Point(22, 103)
         Me.lblFirstName.Name = "lblFirstName"
         Me.lblFirstName.Size = New System.Drawing.Size(139, 29)
@@ -96,6 +102,7 @@ Partial Class FormAdmisions
         '
         Me.lblLastName.AutoSize = True
         Me.lblLastName.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLastName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblLastName.Location = New System.Drawing.Point(504, 103)
         Me.lblLastName.Name = "lblLastName"
         Me.lblLastName.Size = New System.Drawing.Size(134, 29)
@@ -106,6 +113,7 @@ Partial Class FormAdmisions
         '
         Me.lblMajor.AutoSize = True
         Me.lblMajor.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMajor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblMajor.Location = New System.Drawing.Point(490, 401)
         Me.lblMajor.Name = "lblMajor"
         Me.lblMajor.Size = New System.Drawing.Size(85, 29)
@@ -115,6 +123,9 @@ Partial Class FormAdmisions
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.txtStudentInfo)
         Me.Panel1.Controls.Add(Me.ddlCovid)
         Me.Panel1.Controls.Add(Me.lblCovid)
         Me.Panel1.Controls.Add(Me.ddlCountry)
@@ -154,6 +165,7 @@ Partial Class FormAdmisions
         'ddlCovid
         '
         Me.ddlCovid.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ddlCovid.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ddlCovid.FormattingEnabled = True
         Me.ddlCovid.Location = New System.Drawing.Point(1016, 400)
         Me.ddlCovid.Name = "ddlCovid"
@@ -164,6 +176,7 @@ Partial Class FormAdmisions
         '
         Me.lblCovid.AutoSize = True
         Me.lblCovid.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCovid.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblCovid.Location = New System.Drawing.Point(893, 401)
         Me.lblCovid.Name = "lblCovid"
         Me.lblCovid.Size = New System.Drawing.Size(130, 29)
@@ -173,6 +186,7 @@ Partial Class FormAdmisions
         'ddlCountry
         '
         Me.ddlCountry.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ddlCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ddlCountry.FormattingEnabled = True
         Me.ddlCountry.Location = New System.Drawing.Point(985, 325)
         Me.ddlCountry.Name = "ddlCountry"
@@ -182,6 +196,7 @@ Partial Class FormAdmisions
         'ddlState
         '
         Me.ddlState.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ddlState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ddlState.FormattingEnabled = True
         Me.ddlState.Location = New System.Drawing.Point(406, 322)
         Me.ddlState.Name = "ddlState"
@@ -191,6 +206,7 @@ Partial Class FormAdmisions
         'txtZipcode
         '
         Me.txtZipcode.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtZipcode.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.txtZipcode.Location = New System.Drawing.Point(749, 325)
         Me.txtZipcode.Multiline = True
         Me.txtZipcode.Name = "txtZipcode"
@@ -200,6 +216,7 @@ Partial Class FormAdmisions
         'txtCity
         '
         Me.txtCity.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCity.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.txtCity.Location = New System.Drawing.Point(81, 322)
         Me.txtCity.Multiline = True
         Me.txtCity.Name = "txtCity"
@@ -210,6 +227,7 @@ Partial Class FormAdmisions
         '
         Me.lblCountry.AutoSize = True
         Me.lblCountry.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblCountry.Location = New System.Drawing.Point(882, 325)
         Me.lblCountry.Name = "lblCountry"
         Me.lblCountry.Size = New System.Drawing.Size(107, 29)
@@ -220,6 +238,7 @@ Partial Class FormAdmisions
         '
         Me.lblZipcode.AutoSize = True
         Me.lblZipcode.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblZipcode.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblZipcode.Location = New System.Drawing.Point(627, 326)
         Me.lblZipcode.Name = "lblZipcode"
         Me.lblZipcode.Size = New System.Drawing.Size(116, 29)
@@ -230,6 +249,7 @@ Partial Class FormAdmisions
         '
         Me.lblState.AutoSize = True
         Me.lblState.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblState.Location = New System.Drawing.Point(335, 325)
         Me.lblState.Name = "lblState"
         Me.lblState.Size = New System.Drawing.Size(74, 29)
@@ -240,6 +260,7 @@ Partial Class FormAdmisions
         '
         Me.lblCity.AutoSize = True
         Me.lblCity.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCity.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblCity.Location = New System.Drawing.Point(22, 325)
         Me.lblCity.Name = "lblCity"
         Me.lblCity.Size = New System.Drawing.Size(63, 29)
@@ -249,6 +270,7 @@ Partial Class FormAdmisions
         'txtAddress
         '
         Me.txtAddress.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.txtAddress.Location = New System.Drawing.Point(195, 248)
         Me.txtAddress.Multiline = True
         Me.txtAddress.Name = "txtAddress"
@@ -259,6 +281,7 @@ Partial Class FormAdmisions
         '
         Me.lblAddress.AutoSize = True
         Me.lblAddress.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblAddress.Location = New System.Drawing.Point(22, 251)
         Me.lblAddress.Name = "lblAddress"
         Me.lblAddress.Size = New System.Drawing.Size(176, 29)
@@ -268,6 +291,7 @@ Partial Class FormAdmisions
         'ddlSex
         '
         Me.ddlSex.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ddlSex.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ddlSex.FormattingEnabled = True
         Me.ddlSex.Location = New System.Drawing.Point(1050, 173)
         Me.ddlSex.Name = "ddlSex"
@@ -278,6 +302,7 @@ Partial Class FormAdmisions
         '
         Me.lblSex.AutoSize = True
         Me.lblSex.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSex.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblSex.Location = New System.Drawing.Point(995, 176)
         Me.lblSex.Name = "lblSex"
         Me.lblSex.Size = New System.Drawing.Size(58, 29)
@@ -287,6 +312,7 @@ Partial Class FormAdmisions
         'txtAge
         '
         Me.txtAge.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtAge.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.txtAge.Location = New System.Drawing.Point(1050, 102)
         Me.txtAge.Multiline = True
         Me.txtAge.Name = "txtAge"
@@ -297,6 +323,7 @@ Partial Class FormAdmisions
         '
         Me.lblAge.AutoSize = True
         Me.lblAge.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAge.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblAge.Location = New System.Drawing.Point(995, 103)
         Me.lblAge.Name = "lblAge"
         Me.lblAge.Size = New System.Drawing.Size(61, 29)
@@ -306,6 +333,7 @@ Partial Class FormAdmisions
         'txtPhone
         '
         Me.txtPhone.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.txtPhone.Location = New System.Drawing.Point(634, 173)
         Me.txtPhone.Multiline = True
         Me.txtPhone.Name = "txtPhone"
@@ -315,6 +343,7 @@ Partial Class FormAdmisions
         'txtEmail
         '
         Me.txtEmail.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.txtEmail.Location = New System.Drawing.Point(102, 172)
         Me.txtEmail.Multiline = True
         Me.txtEmail.Name = "txtEmail"
@@ -325,6 +354,7 @@ Partial Class FormAdmisions
         '
         Me.lblPhone.AutoSize = True
         Me.lblPhone.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblPhone.Location = New System.Drawing.Point(504, 176)
         Me.lblPhone.Name = "lblPhone"
         Me.lblPhone.Size = New System.Drawing.Size(134, 29)
@@ -335,6 +365,7 @@ Partial Class FormAdmisions
         '
         Me.lblEmail.AutoSize = True
         Me.lblEmail.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblEmail.Location = New System.Drawing.Point(22, 175)
         Me.lblEmail.Name = "lblEmail"
         Me.lblEmail.Size = New System.Drawing.Size(84, 29)
@@ -343,7 +374,8 @@ Partial Class FormAdmisions
         '
         'btnSubmit
         '
-        Me.btnSubmit.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSubmit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSubmit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnSubmit.Location = New System.Drawing.Point(237, 521)
         Me.btnSubmit.Name = "btnSubmit"
         Me.btnSubmit.Size = New System.Drawing.Size(136, 39)
@@ -354,6 +386,7 @@ Partial Class FormAdmisions
         'txtIncome
         '
         Me.txtIncome.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtIncome.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.txtIncome.Location = New System.Drawing.Point(340, 400)
         Me.txtIncome.Multiline = True
         Me.txtIncome.Name = "txtIncome"
@@ -363,6 +396,7 @@ Partial Class FormAdmisions
         'ddlMajor
         '
         Me.ddlMajor.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ddlMajor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ddlMajor.FormattingEnabled = True
         Me.ddlMajor.Location = New System.Drawing.Point(568, 401)
         Me.ddlMajor.Name = "ddlMajor"
@@ -372,6 +406,7 @@ Partial Class FormAdmisions
         'txtLastName
         '
         Me.txtLastName.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtLastName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.txtLastName.Location = New System.Drawing.Point(634, 99)
         Me.txtLastName.Multiline = True
         Me.txtLastName.Name = "txtLastName"
@@ -381,6 +416,7 @@ Partial Class FormAdmisions
         'txtFirstName
         '
         Me.txtFirstName.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtFirstName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.txtFirstName.Location = New System.Drawing.Point(156, 99)
         Me.txtFirstName.Multiline = True
         Me.txtFirstName.Name = "txtFirstName"
@@ -391,6 +427,7 @@ Partial Class FormAdmisions
         '
         Me.lblIncome.AutoSize = True
         Me.lblIncome.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblIncome.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.lblIncome.Location = New System.Drawing.Point(22, 401)
         Me.lblIncome.Name = "lblIncome"
         Me.lblIncome.Size = New System.Drawing.Size(325, 29)
@@ -411,11 +448,21 @@ Partial Class FormAdmisions
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Georgia", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Label8.Location = New System.Drawing.Point(200, 47)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(276, 38)
         Me.Label8.TabIndex = 7
         Me.Label8.Text = "Admissions Form"
+        '
+        'txtStudentInfo
+        '
+        Me.txtStudentInfo.Location = New System.Drawing.Point(810, 39)
+        Me.txtStudentInfo.Multiline = True
+        Me.txtStudentInfo.Name = "txtStudentInfo"
+        Me.txtStudentInfo.Size = New System.Drawing.Size(100, 22)
+        Me.txtStudentInfo.TabIndex = 34
+        Me.txtStudentInfo.Visible = False
         '
         'PictureBox1
         '
@@ -427,6 +474,27 @@ Partial Class FormAdmisions
         Me.PictureBox1.TabIndex = 6
         Me.PictureBox1.TabStop = False
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(752, 20)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(218, 16)
+        Me.Label2.TabIndex = 35
+        Me.Label2.Text = "Invisible textbox to store student info"
+        Me.Label2.Visible = False
+        '
+        'Button1
+        '
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.Button1.Location = New System.Drawing.Point(509, 521)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(136, 39)
+        Me.Button1.TabIndex = 36
+        Me.Button1.Text = "Update"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'FormAdmisions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -435,6 +503,8 @@ Partial Class FormAdmisions
         Me.ClientSize = New System.Drawing.Size(1348, 853)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
         Me.Name = "FormAdmisions"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Inter Metro Information System - Admissions Portal"
@@ -482,4 +552,7 @@ Partial Class FormAdmisions
     Friend WithEvents lblAddress As Label
     Friend WithEvents ddlCovid As ComboBox
     Friend WithEvents lblCovid As Label
+    Friend WithEvents txtStudentInfo As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Button1 As Button
 End Class

@@ -18,7 +18,7 @@ Public Class FormLogin
         'Deletes the text on the username textbox when user clicks on it if it contains the placeholder text "Username"
         If txtUsername.Text = "Username" Then
             txtUsername.Text = ""
-            txtUsername.ForeColor = Color.Black
+            txtUsername.ForeColor = Color.FromArgb(48, 48, 48)
         End If
 
         'Writes the placeholder text "Password" on the password textbox if the user
@@ -35,7 +35,7 @@ Public Class FormLogin
         If txtPassword.Text = "Password" Then
             txtPassword.Text = ""
             txtPassword.PasswordChar = "*"
-            txtPassword.ForeColor = Color.Black
+            txtPassword.ForeColor = Color.FromArgb(48, 48, 48)
         End If
 
         'Writes the placeholder text "Username" on the username textbox if the user
@@ -88,23 +88,23 @@ Public Class FormLogin
             'on its Role column to guide the user to the corresponding page on the program
         ElseIf rows.Count > 0 Then
             If sqlTable.Rows(0).Item("Role") = "admissions" Then
-                Me.Hide()
                 FormAdmisions.Show()
+                Me.Close()
             ElseIf sqlTable.Rows(0).Item("Role") = "Registrador" Then
-                Me.Hide()
                 FormRegistrarOffice.Show()
+                Me.Close()
             ElseIf sqlTable.Rows(0).Item("Role") = "Asistencia" Then
-                Me.Hide()
                 FormFinancAssist.Show()
+                Me.Close()
             ElseIf sqlTable.Rows(0).Item("Role") = "administrator" Then
-                Me.Hide()
                 FormAdmin.Show()
+                Me.Close()
             ElseIf sqlTable.Rows(0).Item("Role") = "Facultad" Then
-                Me.Hide()
                 FormFaculty.Show()
+                Me.Close()
             ElseIf sqlTable.Rows(0).Item("Role") = "Estudiante" Then
-                Me.Hide()
                 FormEstudiantes.Show()
+                Me.Close()
             End If
         End If
     End Sub

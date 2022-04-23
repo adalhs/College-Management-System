@@ -170,6 +170,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -180,6 +181,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="FormCustomMsgBox.Designer.vb">
+      <DependentUpon>FormCustomMsgBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormCustomMsgBox.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="TextBoxValidation.vb" />
   </ItemGroup>
@@ -213,6 +220,9 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCustomMsgBox.resx">
+      <DependentUpon>FormCustomMsgBox.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

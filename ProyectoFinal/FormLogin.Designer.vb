@@ -55,7 +55,8 @@ Partial Class FormLogin
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Gold
         Me.Label1.Font = New System.Drawing.Font("Georgia", 43.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(-5, 0)
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(-10, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Padding = New System.Windows.Forms.Padding(60, 0, 60, 0)
         Me.Label1.Size = New System.Drawing.Size(1175, 84)
@@ -90,7 +91,7 @@ Partial Class FormLogin
         '
         Me.btnLogin.BackColor = System.Drawing.SystemColors.ControlLight
         Me.btnLogin.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnLogin.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btnLogin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnLogin.Location = New System.Drawing.Point(604, 632)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(127, 40)
