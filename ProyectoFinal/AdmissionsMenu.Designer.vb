@@ -23,7 +23,7 @@ Partial Class AdmissionsMenu
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.lblMenuName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.btnEnterStudent = New System.Windows.Forms.Button()
         Me.btnUpdateStudent = New System.Windows.Forms.Button()
@@ -39,23 +39,23 @@ Partial Class AdmissionsMenu
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.Gold
-        Me.Panel2.Controls.Add(Me.Label8)
+        Me.Panel2.Controls.Add(Me.lblMenuName)
         Me.Panel2.Controls.Add(Me.PictureBox1)
         Me.Panel2.Location = New System.Drawing.Point(30, 12)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1285, 98)
         Me.Panel2.TabIndex = 7
         '
-        'Label8
+        'lblMenuName
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Dubai", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(200, 47)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(356, 55)
-        Me.Label8.TabIndex = 7
-        Me.Label8.Text = "Admissions Office Portal"
+        Me.lblMenuName.AutoSize = True
+        Me.lblMenuName.Font = New System.Drawing.Font("Dubai", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMenuName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.lblMenuName.Location = New System.Drawing.Point(200, 47)
+        Me.lblMenuName.Name = "lblMenuName"
+        Me.lblMenuName.Size = New System.Drawing.Size(349, 55)
+        Me.lblMenuName.TabIndex = 7
+        Me.lblMenuName.Text = "Menu Name Placeholder"
         '
         'PictureBox1
         '
@@ -160,7 +160,7 @@ Partial Class AdmissionsMenu
     End Sub
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Label8 As Label
+    Friend WithEvents lblMenuName As Label
     Friend WithEvents btnEnterStudent As Button
     Friend WithEvents btnUpdateStudent As Button
     Friend WithEvents btnAdmissionsLogout As Button

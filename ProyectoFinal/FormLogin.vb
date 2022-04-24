@@ -91,6 +91,7 @@ Public Class FormLogin
             'on its Role column to guide the user to the corresponding page on the program
         ElseIf rows.Count > 0 Then
             If sqlTable.Rows(0).Item("Role") = "admissions" Then
+                MenuCode = "1"
                 AdmissionsMenu.Show()
                 Me.Close()
             ElseIf sqlTable.Rows(0).Item("Role") = "Registrador" Then

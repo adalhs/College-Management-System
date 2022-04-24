@@ -73,7 +73,7 @@ Partial Class AdmissionsUpdateStudent
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(136, 47)
         Me.btnExit.TabIndex = 0
-        Me.btnExit.Text = "Back"
+        Me.btnExit.Text = "Exit"
         Me.btnExit.UseVisualStyleBackColor = True
         '
         'lblFirstName

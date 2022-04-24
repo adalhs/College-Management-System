@@ -1,4 +1,11 @@
 ﻿Public Class AdmissionsMenu
+    Private Sub AdmissionsMenu_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If MenuCode = "1" Then
+            btnEnterStudent.Visible = True
+            lblMenuName.Text = "Admissions Office Portal"
+        End If
+    End Sub
+
     Private Sub btnEnterStudent_Click(sender As Object, e As EventArgs) Handles btnEnterStudent.Click
         AdmissionsEnterStudent.Show()
         Me.Close()
