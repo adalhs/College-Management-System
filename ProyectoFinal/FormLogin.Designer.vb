@@ -54,47 +54,48 @@ Partial Class FormLogin
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Gold
-        Me.Label1.Font = New System.Drawing.Font("Georgia", 43.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 43.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(-10, 0)
+        Me.Label1.Location = New System.Drawing.Point(-2, 1)
         Me.Label1.Name = "Label1"
         Me.Label1.Padding = New System.Windows.Forms.Padding(60, 0, 60, 0)
-        Me.Label1.Size = New System.Drawing.Size(1175, 84)
+        Me.Label1.Size = New System.Drawing.Size(1138, 83)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "InterMetro Information System"
         '
         'txtUsername
         '
         Me.txtUsername.BackColor = System.Drawing.SystemColors.Control
-        Me.txtUsername.Font = New System.Drawing.Font("Georgia", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtUsername.Font = New System.Drawing.Font("Dubai", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtUsername.ForeColor = System.Drawing.Color.SlateGray
-        Me.txtUsername.Location = New System.Drawing.Point(465, 382)
+        Me.txtUsername.Location = New System.Drawing.Point(465, 378)
         Me.txtUsername.Multiline = True
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(405, 41)
+        Me.txtUsername.Size = New System.Drawing.Size(405, 50)
         Me.txtUsername.TabIndex = 1
         Me.txtUsername.Text = "Username"
         '
         'txtPassword
         '
         Me.txtPassword.BackColor = System.Drawing.SystemColors.Control
-        Me.txtPassword.Font = New System.Drawing.Font("Georgia", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPassword.Font = New System.Drawing.Font("Dubai", 16.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPassword.ForeColor = System.Drawing.Color.SlateGray
         Me.txtPassword.Location = New System.Drawing.Point(465, 487)
         Me.txtPassword.Multiline = True
         Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.Size = New System.Drawing.Size(405, 41)
+        Me.txtPassword.Size = New System.Drawing.Size(405, 49)
         Me.txtPassword.TabIndex = 2
         Me.txtPassword.Text = "Password"
         '
         'btnLogin
         '
         Me.btnLogin.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.btnLogin.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnLogin.Font = New System.Drawing.Font("Dubai", 14.0!)
         Me.btnLogin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnLogin.Location = New System.Drawing.Point(604, 632)
         Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(127, 40)
+        Me.btnLogin.Size = New System.Drawing.Size(127, 44)
         Me.btnLogin.TabIndex = 0
         Me.btnLogin.Text = "Log in"
         Me.btnLogin.UseVisualStyleBackColor = False
@@ -103,7 +104,7 @@ Partial Class FormLogin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.BackColor = System.Drawing.Color.Gainsboro
         Me.BackgroundImage = Global.ProyectoFinal.My.Resources.Resources.login_background
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ClientSize = New System.Drawing.Size(1348, 853)

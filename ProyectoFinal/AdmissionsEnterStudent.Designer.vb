@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FormAdmisions
+Partial Class AdmissionsEnterStudent
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -28,6 +28,8 @@ Partial Class FormAdmisions
         Me.lblLastName = New System.Windows.Forms.Label()
         Me.lblMajor = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtStudentInfo = New System.Windows.Forms.TextBox()
         Me.ddlCovid = New System.Windows.Forms.ComboBox()
         Me.lblCovid = New System.Windows.Forms.Label()
         Me.ddlCountry = New System.Windows.Forms.ComboBox()
@@ -56,10 +58,7 @@ Partial Class FormAdmisions
         Me.lblIncome = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.txtStudentInfo = New System.Windows.Forms.TextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,63 +66,62 @@ Partial Class FormAdmisions
         '
         'btnExit
         '
-        Me.btnExit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExit.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.btnExit.Location = New System.Drawing.Point(755, 521)
+        Me.btnExit.Location = New System.Drawing.Point(774, 544)
         Me.btnExit.Name = "btnExit"
-        Me.btnExit.Size = New System.Drawing.Size(136, 39)
+        Me.btnExit.Size = New System.Drawing.Size(136, 47)
         Me.btnExit.TabIndex = 0
-        Me.btnExit.Text = "Log out"
+        Me.btnExit.Text = "Back"
         Me.btnExit.UseVisualStyleBackColor = True
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Georgia", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Dubai", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(20, 13)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(480, 39)
+        Me.Label1.Size = New System.Drawing.Size(437, 55)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Enter new student information"
         '
         'lblFirstName
         '
         Me.lblFirstName.AutoSize = True
-        Me.lblFirstName.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFirstName.Font = New System.Drawing.Font("Dubai", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFirstName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblFirstName.Location = New System.Drawing.Point(22, 103)
+        Me.lblFirstName.Location = New System.Drawing.Point(20, 93)
         Me.lblFirstName.Name = "lblFirstName"
-        Me.lblFirstName.Size = New System.Drawing.Size(139, 29)
+        Me.lblFirstName.Size = New System.Drawing.Size(137, 42)
         Me.lblFirstName.TabIndex = 2
         Me.lblFirstName.Text = "First Name:"
         '
         'lblLastName
         '
         Me.lblLastName.AutoSize = True
-        Me.lblLastName.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLastName.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblLastName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblLastName.Location = New System.Drawing.Point(504, 103)
+        Me.lblLastName.Location = New System.Drawing.Point(504, 93)
         Me.lblLastName.Name = "lblLastName"
-        Me.lblLastName.Size = New System.Drawing.Size(134, 29)
+        Me.lblLastName.Size = New System.Drawing.Size(134, 42)
         Me.lblLastName.TabIndex = 3
         Me.lblLastName.Text = "Last Name:"
         '
         'lblMajor
         '
         Me.lblMajor.AutoSize = True
-        Me.lblMajor.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMajor.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblMajor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblMajor.Location = New System.Drawing.Point(490, 401)
+        Me.lblMajor.Location = New System.Drawing.Point(490, 419)
         Me.lblMajor.Name = "lblMajor"
-        Me.lblMajor.Size = New System.Drawing.Size(85, 29)
+        Me.lblMajor.Size = New System.Drawing.Size(84, 42)
         Me.lblMajor.TabIndex = 4
         Me.lblMajor.Text = "Major:"
         '
         'Panel1
         '
-        Me.Panel1.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.BackColor = System.Drawing.Color.Gainsboro
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.txtStudentInfo)
         Me.Panel1.Controls.Add(Me.ddlCovid)
@@ -162,275 +160,295 @@ Partial Class FormAdmisions
         Me.Panel1.Size = New System.Drawing.Size(1285, 714)
         Me.Panel1.TabIndex = 5
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(752, 20)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(218, 16)
+        Me.Label2.TabIndex = 35
+        Me.Label2.Text = "Invisible textbox to store student info"
+        Me.Label2.Visible = False
+        '
+        'txtStudentInfo
+        '
+        Me.txtStudentInfo.Location = New System.Drawing.Point(810, 39)
+        Me.txtStudentInfo.Multiline = True
+        Me.txtStudentInfo.Name = "txtStudentInfo"
+        Me.txtStudentInfo.Size = New System.Drawing.Size(100, 22)
+        Me.txtStudentInfo.TabIndex = 34
+        Me.txtStudentInfo.Visible = False
+        '
         'ddlCovid
         '
-        Me.ddlCovid.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ddlCovid.Font = New System.Drawing.Font("Dubai", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ddlCovid.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ddlCovid.FormattingEnabled = True
-        Me.ddlCovid.Location = New System.Drawing.Point(1016, 400)
+        Me.ddlCovid.Location = New System.Drawing.Point(1016, 418)
         Me.ddlCovid.Name = "ddlCovid"
-        Me.ddlCovid.Size = New System.Drawing.Size(239, 32)
+        Me.ddlCovid.Size = New System.Drawing.Size(239, 42)
         Me.ddlCovid.TabIndex = 33
         '
         'lblCovid
         '
         Me.lblCovid.AutoSize = True
-        Me.lblCovid.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCovid.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblCovid.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblCovid.Location = New System.Drawing.Point(893, 401)
+        Me.lblCovid.Location = New System.Drawing.Point(893, 419)
         Me.lblCovid.Name = "lblCovid"
-        Me.lblCovid.Size = New System.Drawing.Size(130, 29)
+        Me.lblCovid.Size = New System.Drawing.Size(129, 42)
         Me.lblCovid.TabIndex = 32
         Me.lblCovid.Text = "COVID-19:"
         '
         'ddlCountry
         '
-        Me.ddlCountry.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ddlCountry.Font = New System.Drawing.Font("Dubai", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ddlCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ddlCountry.FormattingEnabled = True
-        Me.ddlCountry.Location = New System.Drawing.Point(985, 325)
+        Me.ddlCountry.Location = New System.Drawing.Point(991, 340)
         Me.ddlCountry.Name = "ddlCountry"
-        Me.ddlCountry.Size = New System.Drawing.Size(270, 32)
+        Me.ddlCountry.Size = New System.Drawing.Size(264, 42)
         Me.ddlCountry.TabIndex = 30
         '
         'ddlState
         '
-        Me.ddlState.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ddlState.Font = New System.Drawing.Font("Dubai", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ddlState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ddlState.FormattingEnabled = True
-        Me.ddlState.Location = New System.Drawing.Point(406, 322)
+        Me.ddlState.Location = New System.Drawing.Point(403, 340)
         Me.ddlState.Name = "ddlState"
-        Me.ddlState.Size = New System.Drawing.Size(215, 32)
+        Me.ddlState.Size = New System.Drawing.Size(215, 42)
         Me.ddlState.TabIndex = 29
         '
         'txtZipcode
         '
-        Me.txtZipcode.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtZipcode.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtZipcode.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.txtZipcode.Location = New System.Drawing.Point(749, 325)
+        Me.txtZipcode.Location = New System.Drawing.Point(745, 341)
         Me.txtZipcode.Multiline = True
         Me.txtZipcode.Name = "txtZipcode"
-        Me.txtZipcode.Size = New System.Drawing.Size(127, 32)
+        Me.txtZipcode.Size = New System.Drawing.Size(131, 43)
         Me.txtZipcode.TabIndex = 28
         '
         'txtCity
         '
-        Me.txtCity.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCity.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCity.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.txtCity.Location = New System.Drawing.Point(81, 322)
+        Me.txtCity.Location = New System.Drawing.Point(72, 340)
         Me.txtCity.Multiline = True
         Me.txtCity.Name = "txtCity"
-        Me.txtCity.Size = New System.Drawing.Size(248, 32)
+        Me.txtCity.Size = New System.Drawing.Size(245, 43)
         Me.txtCity.TabIndex = 27
         '
         'lblCountry
         '
         Me.lblCountry.AutoSize = True
-        Me.lblCountry.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCountry.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblCountry.Location = New System.Drawing.Point(882, 325)
+        Me.lblCountry.Location = New System.Drawing.Point(893, 341)
         Me.lblCountry.Name = "lblCountry"
-        Me.lblCountry.Size = New System.Drawing.Size(107, 29)
+        Me.lblCountry.Size = New System.Drawing.Size(105, 42)
         Me.lblCountry.TabIndex = 26
         Me.lblCountry.Text = "Country:"
         '
         'lblZipcode
         '
         Me.lblZipcode.AutoSize = True
-        Me.lblZipcode.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblZipcode.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblZipcode.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblZipcode.Location = New System.Drawing.Point(627, 326)
+        Me.lblZipcode.Location = New System.Drawing.Point(640, 340)
         Me.lblZipcode.Name = "lblZipcode"
-        Me.lblZipcode.Size = New System.Drawing.Size(116, 29)
+        Me.lblZipcode.Size = New System.Drawing.Size(114, 42)
         Me.lblZipcode.TabIndex = 25
         Me.lblZipcode.Text = "Zip Code:"
         '
         'lblState
         '
         Me.lblState.AutoSize = True
-        Me.lblState.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblState.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblState.Location = New System.Drawing.Point(335, 325)
+        Me.lblState.Location = New System.Drawing.Point(333, 341)
         Me.lblState.Name = "lblState"
-        Me.lblState.Size = New System.Drawing.Size(74, 29)
+        Me.lblState.Size = New System.Drawing.Size(79, 42)
         Me.lblState.TabIndex = 24
         Me.lblState.Text = "State:"
         '
         'lblCity
         '
         Me.lblCity.AutoSize = True
-        Me.lblCity.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCity.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblCity.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblCity.Location = New System.Drawing.Point(22, 325)
+        Me.lblCity.Location = New System.Drawing.Point(20, 340)
         Me.lblCity.Name = "lblCity"
-        Me.lblCity.Size = New System.Drawing.Size(63, 29)
+        Me.lblCity.Size = New System.Drawing.Size(63, 42)
         Me.lblCity.TabIndex = 23
         Me.lblCity.Text = "City:"
         '
         'txtAddress
         '
-        Me.txtAddress.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtAddress.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.txtAddress.Location = New System.Drawing.Point(195, 248)
+        Me.txtAddress.Location = New System.Drawing.Point(190, 258)
         Me.txtAddress.Multiline = True
         Me.txtAddress.Name = "txtAddress"
-        Me.txtAddress.Size = New System.Drawing.Size(1060, 32)
+        Me.txtAddress.Size = New System.Drawing.Size(1065, 43)
         Me.txtAddress.TabIndex = 22
         '
         'lblAddress
         '
         Me.lblAddress.AutoSize = True
-        Me.lblAddress.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAddress.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblAddress.Location = New System.Drawing.Point(22, 251)
+        Me.lblAddress.Location = New System.Drawing.Point(20, 259)
         Me.lblAddress.Name = "lblAddress"
-        Me.lblAddress.Size = New System.Drawing.Size(176, 29)
+        Me.lblAddress.Size = New System.Drawing.Size(179, 42)
         Me.lblAddress.TabIndex = 21
         Me.lblAddress.Text = "Street Address:"
         '
         'ddlSex
         '
-        Me.ddlSex.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ddlSex.Font = New System.Drawing.Font("Dubai", 12.0!)
         Me.ddlSex.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ddlSex.FormattingEnabled = True
         Me.ddlSex.Location = New System.Drawing.Point(1050, 173)
         Me.ddlSex.Name = "ddlSex"
-        Me.ddlSex.Size = New System.Drawing.Size(205, 32)
+        Me.ddlSex.Size = New System.Drawing.Size(205, 42)
         Me.ddlSex.TabIndex = 20
         '
         'lblSex
         '
         Me.lblSex.AutoSize = True
-        Me.lblSex.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSex.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblSex.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblSex.Location = New System.Drawing.Point(995, 176)
+        Me.lblSex.Location = New System.Drawing.Point(996, 174)
         Me.lblSex.Name = "lblSex"
-        Me.lblSex.Size = New System.Drawing.Size(58, 29)
+        Me.lblSex.Size = New System.Drawing.Size(60, 42)
         Me.lblSex.TabIndex = 18
         Me.lblSex.Text = "Sex:"
         '
         'txtAge
         '
-        Me.txtAge.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtAge.Font = New System.Drawing.Font("Dubai", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAge.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.txtAge.Location = New System.Drawing.Point(1050, 102)
+        Me.txtAge.Location = New System.Drawing.Point(1050, 92)
         Me.txtAge.Multiline = True
         Me.txtAge.Name = "txtAge"
-        Me.txtAge.Size = New System.Drawing.Size(100, 32)
+        Me.txtAge.Size = New System.Drawing.Size(100, 43)
         Me.txtAge.TabIndex = 17
         '
         'lblAge
         '
         Me.lblAge.AutoSize = True
-        Me.lblAge.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAge.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblAge.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblAge.Location = New System.Drawing.Point(995, 103)
+        Me.lblAge.Location = New System.Drawing.Point(993, 93)
         Me.lblAge.Name = "lblAge"
-        Me.lblAge.Size = New System.Drawing.Size(61, 29)
+        Me.lblAge.Size = New System.Drawing.Size(63, 42)
         Me.lblAge.TabIndex = 16
         Me.lblAge.Text = "Age:"
         '
         'txtPhone
         '
-        Me.txtPhone.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPhone.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.txtPhone.Location = New System.Drawing.Point(634, 173)
+        Me.txtPhone.Location = New System.Drawing.Point(627, 171)
         Me.txtPhone.Multiline = True
         Me.txtPhone.Name = "txtPhone"
-        Me.txtPhone.Size = New System.Drawing.Size(313, 33)
+        Me.txtPhone.Size = New System.Drawing.Size(320, 45)
         Me.txtPhone.TabIndex = 15
         '
         'txtEmail
         '
-        Me.txtEmail.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtEmail.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.txtEmail.Location = New System.Drawing.Point(102, 172)
+        Me.txtEmail.Location = New System.Drawing.Point(92, 173)
         Me.txtEmail.Multiline = True
         Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.Size = New System.Drawing.Size(367, 33)
+        Me.txtEmail.Size = New System.Drawing.Size(377, 43)
         Me.txtEmail.TabIndex = 14
         '
         'lblPhone
         '
         Me.lblPhone.AutoSize = True
-        Me.lblPhone.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPhone.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblPhone.Location = New System.Drawing.Point(504, 176)
+        Me.lblPhone.Location = New System.Drawing.Point(504, 174)
         Me.lblPhone.Name = "lblPhone"
-        Me.lblPhone.Size = New System.Drawing.Size(134, 29)
+        Me.lblPhone.Size = New System.Drawing.Size(131, 42)
         Me.lblPhone.TabIndex = 13
         Me.lblPhone.Text = "Telephone:"
         '
         'lblEmail
         '
         Me.lblEmail.AutoSize = True
-        Me.lblEmail.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmail.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblEmail.Location = New System.Drawing.Point(22, 175)
+        Me.lblEmail.Location = New System.Drawing.Point(20, 173)
         Me.lblEmail.Name = "lblEmail"
-        Me.lblEmail.Size = New System.Drawing.Size(84, 29)
+        Me.lblEmail.Size = New System.Drawing.Size(80, 42)
         Me.lblEmail.TabIndex = 12
         Me.lblEmail.Text = "Email:"
         '
         'btnSubmit
         '
-        Me.btnSubmit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSubmit.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSubmit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.btnSubmit.Location = New System.Drawing.Point(237, 521)
+        Me.btnSubmit.Location = New System.Drawing.Point(377, 544)
         Me.btnSubmit.Name = "btnSubmit"
-        Me.btnSubmit.Size = New System.Drawing.Size(136, 39)
+        Me.btnSubmit.Size = New System.Drawing.Size(136, 47)
         Me.btnSubmit.TabIndex = 11
         Me.btnSubmit.Text = "Submit"
         Me.btnSubmit.UseVisualStyleBackColor = True
         '
         'txtIncome
         '
-        Me.txtIncome.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtIncome.Font = New System.Drawing.Font("Dubai", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtIncome.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.txtIncome.Location = New System.Drawing.Point(340, 400)
+        Me.txtIncome.Location = New System.Drawing.Point(326, 415)
         Me.txtIncome.Multiline = True
         Me.txtIncome.Name = "txtIncome"
-        Me.txtIncome.Size = New System.Drawing.Size(129, 33)
+        Me.txtIncome.Size = New System.Drawing.Size(143, 44)
         Me.txtIncome.TabIndex = 10
         '
         'ddlMajor
         '
-        Me.ddlMajor.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ddlMajor.Font = New System.Drawing.Font("Dubai", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ddlMajor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ddlMajor.FormattingEnabled = True
-        Me.ddlMajor.Location = New System.Drawing.Point(568, 401)
+        Me.ddlMajor.Location = New System.Drawing.Point(567, 418)
         Me.ddlMajor.Name = "ddlMajor"
-        Me.ddlMajor.Size = New System.Drawing.Size(313, 32)
+        Me.ddlMajor.Size = New System.Drawing.Size(309, 42)
         Me.ddlMajor.TabIndex = 9
         '
         'txtLastName
         '
-        Me.txtLastName.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtLastName.Font = New System.Drawing.Font("Dubai", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtLastName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.txtLastName.Location = New System.Drawing.Point(634, 99)
+        Me.txtLastName.Location = New System.Drawing.Point(632, 92)
         Me.txtLastName.Multiline = True
         Me.txtLastName.Name = "txtLastName"
-        Me.txtLastName.Size = New System.Drawing.Size(313, 33)
+        Me.txtLastName.Size = New System.Drawing.Size(315, 43)
         Me.txtLastName.TabIndex = 7
         '
         'txtFirstName
         '
-        Me.txtFirstName.Font = New System.Drawing.Font("Georgia", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtFirstName.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.txtFirstName.Font = New System.Drawing.Font("Dubai", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFirstName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.txtFirstName.Location = New System.Drawing.Point(156, 99)
+        Me.txtFirstName.Location = New System.Drawing.Point(150, 92)
         Me.txtFirstName.Multiline = True
         Me.txtFirstName.Name = "txtFirstName"
-        Me.txtFirstName.Size = New System.Drawing.Size(313, 33)
+        Me.txtFirstName.Size = New System.Drawing.Size(319, 43)
         Me.txtFirstName.TabIndex = 6
         '
         'lblIncome
         '
         Me.lblIncome.AutoSize = True
-        Me.lblIncome.Font = New System.Drawing.Font("Georgia", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblIncome.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblIncome.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblIncome.Location = New System.Drawing.Point(22, 401)
+        Me.lblIncome.Location = New System.Drawing.Point(20, 418)
         Me.lblIncome.Name = "lblIncome"
-        Me.lblIncome.Size = New System.Drawing.Size(325, 29)
+        Me.lblIncome.Size = New System.Drawing.Size(310, 42)
         Me.lblIncome.TabIndex = 5
         Me.lblIncome.Text = "Yearly Household Income:  $"
         '
@@ -447,22 +465,13 @@ Partial Class FormAdmisions
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Georgia", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Font = New System.Drawing.Font("Dubai", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Label8.Location = New System.Drawing.Point(200, 47)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(276, 38)
+        Me.Label8.Size = New System.Drawing.Size(256, 55)
         Me.Label8.TabIndex = 7
         Me.Label8.Text = "Admissions Form"
-        '
-        'txtStudentInfo
-        '
-        Me.txtStudentInfo.Location = New System.Drawing.Point(810, 39)
-        Me.txtStudentInfo.Multiline = True
-        Me.txtStudentInfo.Name = "txtStudentInfo"
-        Me.txtStudentInfo.Size = New System.Drawing.Size(100, 22)
-        Me.txtStudentInfo.TabIndex = 34
-        Me.txtStudentInfo.Visible = False
         '
         'PictureBox1
         '
@@ -474,28 +483,7 @@ Partial Class FormAdmisions
         Me.PictureBox1.TabIndex = 6
         Me.PictureBox1.TabStop = False
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(752, 20)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(218, 16)
-        Me.Label2.TabIndex = 35
-        Me.Label2.Text = "Invisible textbox to store student info"
-        Me.Label2.Visible = False
-        '
-        'Button1
-        '
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.Button1.Location = New System.Drawing.Point(509, 521)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(136, 39)
-        Me.Button1.TabIndex = 36
-        Me.Button1.Text = "Update"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'FormAdmisions
+        'AdmissionsEnterStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -505,7 +493,7 @@ Partial Class FormAdmisions
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
-        Me.Name = "FormAdmisions"
+        Me.Name = "AdmissionsEnterStudent"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Inter Metro Information System - Admissions Portal"
         Me.Panel1.ResumeLayout(False)
@@ -554,5 +542,4 @@ Partial Class FormAdmisions
     Friend WithEvents lblCovid As Label
     Friend WithEvents txtStudentInfo As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents Button1 As Button
 End Class

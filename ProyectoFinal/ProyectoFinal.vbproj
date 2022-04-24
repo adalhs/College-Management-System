@@ -117,6 +117,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdmissionsMenu.Designer.vb">
+      <DependentUpon>AdmissionsMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AdmissionsMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdmissionsUpdateStudent.Designer.vb">
+      <DependentUpon>AdmissionsUpdateStudent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AdmissionsUpdateStudent.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAdmin.Designer.vb">
       <DependentUpon>FormAdmin.vb</DependentUpon>
     </Compile>
@@ -148,10 +160,10 @@
       <DependentUpon>FormLogin.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAdmisions.Designer.vb">
-      <DependentUpon>FormAdmisions.vb</DependentUpon>
+    <Compile Include="AdmissionsEnterStudent.Designer.vb">
+      <DependentUpon>AdmissionsEnterStudent.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormAdmisions.vb">
+    <Compile Include="AdmissionsEnterStudent.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBursarsOffice.Designer.vb">
@@ -166,6 +178,7 @@
     <Compile Include="FormRegistrarOffice.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GlobalVariables.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -191,6 +204,12 @@
     <Compile Include="TextBoxValidation.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AdmissionsMenu.resx">
+      <DependentUpon>AdmissionsMenu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdmissionsUpdateStudent.resx">
+      <DependentUpon>AdmissionsUpdateStudent.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAdmin.resx">
       <DependentUpon>FormAdmin.vb</DependentUpon>
     </EmbeddedResource>
@@ -206,8 +225,8 @@
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAdmisions.resx">
-      <DependentUpon>FormAdmisions.vb</DependentUpon>
+    <EmbeddedResource Include="AdmissionsEnterStudent.resx">
+      <DependentUpon>AdmissionsEnterStudent.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBursarsOffice.resx">
       <DependentUpon>FormBursarsOffice.vb</DependentUpon>

@@ -5,8 +5,6 @@ Public Class FormLogin
     Dim sqlCmd As New SqlCommand
     Dim sqlReader As SqlDataReader   'sqlReader is not an object, does not need "New"
     Dim sqlTable As New DataTable
-    Dim sqlAdapter As New SqlDataAdapter
-    Dim sqlQuery As String
 
     Dim server As String = "LAPTOP-11N7BEC8\SQLEXPRESS"
     Dim username As String = "sa"
@@ -25,6 +23,11 @@ Public Class FormLogin
         'deleted it and left the textbox empty when user clicks the username textbox
         If txtPassword.Text = "" Then
             txtPassword.Text = "Password"
+
+            'If I don't remove the passwordchar set in txtPassword_Click here, and the user just keeps clicking
+            'back and forth between the user and password textboxes without typing anything (unlikely), it will set the "Password"
+            'text in the Password textbox but the word will be hidden, and we want the user to know that is the Password textbox
+            txtPassword.PasswordChar = Nothing
             txtPassword.ForeColor = Color.SlateGray
         End If
     End Sub
@@ -36,11 +39,11 @@ Public Class FormLogin
             txtPassword.Text = ""
             txtPassword.PasswordChar = "*"
             txtPassword.ForeColor = Color.FromArgb(48, 48, 48)
-        End If
+            End If
 
-        'Writes the placeholder text "Username" on the username textbox if the user
-        'deleted it and left the textbox empty when user clicks the password textbox
-        If txtUsername.Text = "" Then
+            'Writes the placeholder text "Username" on the username textbox if the user
+            'deleted it and left the textbox empty when user clicks the password textbox
+            If txtUsername.Text = "" Then
             txtUsername.Text = "Username"
             txtUsername.ForeColor = Color.SlateGray
         End If
@@ -88,7 +91,7 @@ Public Class FormLogin
             'on its Role column to guide the user to the corresponding page on the program
         ElseIf rows.Count > 0 Then
             If sqlTable.Rows(0).Item("Role") = "admissions" Then
-                FormAdmisions.Show()
+                AdmissionsMenu.Show()
                 Me.Close()
             ElseIf sqlTable.Rows(0).Item("Role") = "Registrador" Then
                 FormRegistrarOffice.Show()

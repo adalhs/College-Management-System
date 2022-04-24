@@ -35,7 +35,7 @@ Partial Class FormCustomMsgBox
         Me.btnConfirmYes.Name = "btnConfirmYes"
         Me.btnConfirmYes.Size = New System.Drawing.Size(94, 40)
         Me.btnConfirmYes.TabIndex = 1
-        Me.btnConfirmYes.Text = "Ok"
+        Me.btnConfirmYes.Text = "Yes"
         Me.btnConfirmYes.UseVisualStyleBackColor = True
         '
         'lblDisplayInfo
@@ -59,7 +59,7 @@ Partial Class FormCustomMsgBox
         Me.btnConfirmNo.Name = "btnConfirmNo"
         Me.btnConfirmNo.Size = New System.Drawing.Size(90, 40)
         Me.btnConfirmNo.TabIndex = 2
-        Me.btnConfirmNo.Text = "Cancel"
+        Me.btnConfirmNo.Text = "No"
         Me.btnConfirmNo.UseVisualStyleBackColor = True
         '
         'FormCustomMsgBox
