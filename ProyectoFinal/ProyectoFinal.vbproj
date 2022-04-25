@@ -117,22 +117,16 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdmissionsMenu.Designer.vb">
-      <DependentUpon>AdmissionsMenu.vb</DependentUpon>
+    <Compile Include="AdminForm.Designer.vb">
+      <DependentUpon>AdminForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="AdmissionsMenu.vb">
+    <Compile Include="AdminForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdmissionsUpdateStudent.Designer.vb">
-      <DependentUpon>AdmissionsUpdateStudent.vb</DependentUpon>
+    <Compile Include="PortalMenu.Designer.vb">
+      <DependentUpon>PortalMenu.vb</DependentUpon>
     </Compile>
-    <Compile Include="AdmissionsUpdateStudent.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAdmin.Designer.vb">
-      <DependentUpon>FormAdmin.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormAdmin.vb">
+    <Compile Include="PortalMenu.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFinancAssist.Designer.vb">
@@ -153,17 +147,17 @@
     <Compile Include="FormFaculty.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.vb">
+    <Compile Include="Login.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.Designer.vb">
-      <DependentUpon>FormLogin.vb</DependentUpon>
+    <Compile Include="Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AdmissionsEnterStudent.Designer.vb">
-      <DependentUpon>AdmissionsEnterStudent.vb</DependentUpon>
+    <Compile Include="Admissions.Designer.vb">
+      <DependentUpon>Admissions.vb</DependentUpon>
     </Compile>
-    <Compile Include="AdmissionsEnterStudent.vb">
+    <Compile Include="Admissions.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBursarsOffice.Designer.vb">
@@ -204,14 +198,11 @@
     <Compile Include="TextBoxValidation.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AdmissionsMenu.resx">
-      <DependentUpon>AdmissionsMenu.vb</DependentUpon>
+    <EmbeddedResource Include="AdminForm.resx">
+      <DependentUpon>AdminForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdmissionsUpdateStudent.resx">
-      <DependentUpon>AdmissionsUpdateStudent.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormAdmin.resx">
-      <DependentUpon>FormAdmin.vb</DependentUpon>
+    <EmbeddedResource Include="PortalMenu.resx">
+      <DependentUpon>PortalMenu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFinancAssist.resx">
       <DependentUpon>FormFinancAssist.vb</DependentUpon>
@@ -222,11 +213,11 @@
     <EmbeddedResource Include="FormFaculty.resx">
       <DependentUpon>FormFaculty.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormLogin.resx">
-      <DependentUpon>FormLogin.vb</DependentUpon>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdmissionsEnterStudent.resx">
-      <DependentUpon>AdmissionsEnterStudent.vb</DependentUpon>
+    <EmbeddedResource Include="Admissions.resx">
+      <DependentUpon>Admissions.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBursarsOffice.resx">
       <DependentUpon>FormBursarsOffice.vb</DependentUpon>

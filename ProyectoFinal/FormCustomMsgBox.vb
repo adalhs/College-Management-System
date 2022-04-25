@@ -1,15 +1,15 @@
 ﻿Public Class FormCustomMsgBox
     Private Sub TestForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If CustomMsgBoxCode = "1" Or CustomMsgBoxCode = "2" Then
-            lblDisplayInfo.Text = AdmissionsEnterStudent.txtStudentInfo.Text
+            lblDisplayInfo.Text = Admissions.txtStudentInfo.Text
         End If
     End Sub
 
     Private Sub btnConfirmYes_Click(sender As Object, e As EventArgs) Handles btnConfirmYes.Click
         If CustomMsgBoxCode = "1" Then
-            AdmissionsEnterStudent.EnterStudentInfo()
+            Admissions.EnterStudentInfo()
         ElseIf CustomMsgBoxCode = "2" Then
-            AdmissionsEnterStudent.UpdateStudentInfo()
+            Admissions.UpdateStudentInfo()
         End If
     End Sub
 

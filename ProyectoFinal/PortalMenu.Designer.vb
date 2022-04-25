@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class AdmissionsMenu
+Partial Class PortalMenu
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,13 +22,15 @@ Partial Class AdmissionsMenu
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PortalMenu))
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.lblMenuName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.btnEnterStudent = New System.Windows.Forms.Button()
-        Me.btnUpdateStudent = New System.Windows.Forms.Button()
-        Me.btnAdmissionsLogout = New System.Windows.Forms.Button()
+        Me.btnAdmissions = New System.Windows.Forms.Button()
+        Me.btnLogout = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.btnAdmin = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel2.SuspendLayout()
@@ -49,11 +51,11 @@ Partial Class AdmissionsMenu
         'lblMenuName
         '
         Me.lblMenuName.AutoSize = True
-        Me.lblMenuName.Font = New System.Drawing.Font("Dubai", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMenuName.Font = New System.Drawing.Font("Dubai", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblMenuName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblMenuName.Location = New System.Drawing.Point(200, 47)
+        Me.lblMenuName.Location = New System.Drawing.Point(199, 31)
         Me.lblMenuName.Name = "lblMenuName"
-        Me.lblMenuName.Size = New System.Drawing.Size(349, 55)
+        Me.lblMenuName.Size = New System.Drawing.Size(429, 67)
         Me.lblMenuName.TabIndex = 7
         Me.lblMenuName.Text = "Menu Name Placeholder"
         '
@@ -67,60 +69,72 @@ Partial Class AdmissionsMenu
         Me.PictureBox1.TabIndex = 6
         Me.PictureBox1.TabStop = False
         '
-        'btnEnterStudent
+        'btnAdmissions
         '
-        Me.btnEnterStudent.BackColor = System.Drawing.Color.Gainsboro
-        Me.btnEnterStudent.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnEnterStudent.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.btnEnterStudent.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnEnterStudent.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.btnEnterStudent.Location = New System.Drawing.Point(260, 116)
-        Me.btnEnterStudent.Name = "btnEnterStudent"
-        Me.btnEnterStudent.Size = New System.Drawing.Size(765, 60)
-        Me.btnEnterStudent.TabIndex = 8
-        Me.btnEnterStudent.Text = "ENTER NEW STUDENT INFORMATION"
-        Me.btnEnterStudent.UseVisualStyleBackColor = False
+        Me.btnAdmissions.BackColor = System.Drawing.Color.Gainsboro
+        Me.btnAdmissions.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAdmissions.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.btnAdmissions.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAdmissions.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnAdmissions.Location = New System.Drawing.Point(260, 188)
+        Me.btnAdmissions.Name = "btnAdmissions"
+        Me.btnAdmissions.Size = New System.Drawing.Size(765, 60)
+        Me.btnAdmissions.TabIndex = 8
+        Me.btnAdmissions.Text = "STUDENT INFORMATION MANAGEMENT"
+        Me.btnAdmissions.UseVisualStyleBackColor = False
+        Me.btnAdmissions.Visible = False
         '
-        'btnUpdateStudent
+        'btnLogout
         '
-        Me.btnUpdateStudent.BackColor = System.Drawing.Color.Gainsboro
-        Me.btnUpdateStudent.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnUpdateStudent.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUpdateStudent.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.btnUpdateStudent.Location = New System.Drawing.Point(260, 318)
-        Me.btnUpdateStudent.Name = "btnUpdateStudent"
-        Me.btnUpdateStudent.Size = New System.Drawing.Size(765, 60)
-        Me.btnUpdateStudent.TabIndex = 9
-        Me.btnUpdateStudent.Text = "UPDATE STUDENT INFORMATION"
-        Me.btnUpdateStudent.UseVisualStyleBackColor = False
-        '
-        'btnAdmissionsLogout
-        '
-        Me.btnAdmissionsLogout.BackColor = System.Drawing.Color.Gainsboro
-        Me.btnAdmissionsLogout.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnAdmissionsLogout.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAdmissionsLogout.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.btnAdmissionsLogout.Location = New System.Drawing.Point(260, 502)
-        Me.btnAdmissionsLogout.Name = "btnAdmissionsLogout"
-        Me.btnAdmissionsLogout.Size = New System.Drawing.Size(765, 60)
-        Me.btnAdmissionsLogout.TabIndex = 10
-        Me.btnAdmissionsLogout.Text = "LOG OUT"
-        Me.btnAdmissionsLogout.UseVisualStyleBackColor = False
+        Me.btnLogout.BackColor = System.Drawing.Color.Gainsboro
+        Me.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnLogout.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLogout.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnLogout.Location = New System.Drawing.Point(260, 452)
+        Me.btnLogout.Name = "btnLogout"
+        Me.btnLogout.Size = New System.Drawing.Size(765, 60)
+        Me.btnLogout.TabIndex = 10
+        Me.btnLogout.Text = "LOG OUT"
+        Me.btnLogout.UseVisualStyleBackColor = False
         '
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Panel1.BackgroundImage = Global.ProyectoFinal.My.Resources.Resources.menu_background
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Panel1.Controls.Add(Me.TextBox1)
+        Me.Panel1.Controls.Add(Me.btnAdmin)
         Me.Panel1.Controls.Add(Me.Panel4)
         Me.Panel1.Controls.Add(Me.Panel3)
-        Me.Panel1.Controls.Add(Me.btnAdmissionsLogout)
-        Me.Panel1.Controls.Add(Me.btnUpdateStudent)
-        Me.Panel1.Controls.Add(Me.btnEnterStudent)
+        Me.Panel1.Controls.Add(Me.btnLogout)
+        Me.Panel1.Controls.Add(Me.btnAdmissions)
         Me.Panel1.Location = New System.Drawing.Point(30, 107)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1285, 714)
         Me.Panel1.TabIndex = 8
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(357, 30)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(602, 65)
+        Me.TextBox1.TabIndex = 14
+        Me.TextBox1.Text = resources.GetString("TextBox1.Text")
+        Me.TextBox1.Visible = False
+        '
+        'btnAdmin
+        '
+        Me.btnAdmin.BackColor = System.Drawing.Color.Gainsboro
+        Me.btnAdmin.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAdmin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnAdmin.Location = New System.Drawing.Point(260, 188)
+        Me.btnAdmin.Name = "btnAdmin"
+        Me.btnAdmin.Size = New System.Drawing.Size(765, 60)
+        Me.btnAdmin.TabIndex = 13
+        Me.btnAdmin.Text = "ACCOUNT MANAGEMENT"
+        Me.btnAdmin.UseVisualStyleBackColor = False
+        Me.btnAdmin.Visible = False
         '
         'Panel4
         '
@@ -138,7 +152,7 @@ Partial Class AdmissionsMenu
         Me.Panel3.Size = New System.Drawing.Size(115, 714)
         Me.Panel3.TabIndex = 11
         '
-        'AdmissionsMenu
+        'PortalMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -148,22 +162,22 @@ Partial Class AdmissionsMenu
         Me.Controls.Add(Me.Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
-        Me.Name = "AdmissionsMenu"
+        Me.Name = "PortalMenu"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Inter Metro Information System - Admissions Portal"
+        Me.Text = "InterMetro Information System"
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Panel2 As Panel
     Friend WithEvents lblMenuName As Label
-    Friend WithEvents btnEnterStudent As Button
-    Friend WithEvents btnUpdateStudent As Button
-    Friend WithEvents btnAdmissionsLogout As Button
+    Friend WithEvents btnAdmissions As Button
+    Friend WithEvents btnLogout As Button
     Friend WithEvents Panel1 As Panel
 
     Private Sub ddl_KeyPress(sender As Object, e As KeyPressEventArgs)
@@ -184,4 +198,6 @@ Partial Class AdmissionsMenu
 
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Panel4 As Panel
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents btnAdmin As Button
 End Class

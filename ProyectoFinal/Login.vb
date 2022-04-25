@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
-Public Class FormLogin
+Public Class Login
     Dim sqlConn As New SqlConnection  'represents a unique session(connection) to a SQL Server data source
     Dim sqlCmd As New SqlCommand
     Dim sqlReader As SqlDataReader   'sqlReader is not an object, does not need "New"
@@ -39,11 +39,11 @@ Public Class FormLogin
             txtPassword.Text = ""
             txtPassword.PasswordChar = "*"
             txtPassword.ForeColor = Color.FromArgb(48, 48, 48)
-            End If
+        End If
 
-            'Writes the placeholder text "Username" on the username textbox if the user
-            'deleted it and left the textbox empty when user clicks the password textbox
-            If txtUsername.Text = "" Then
+        'Writes the placeholder text "Username" on the username textbox if the user
+        'deleted it and left the textbox empty when user clicks the password textbox
+        If txtUsername.Text = "" Then
             txtUsername.Text = "Username"
             txtUsername.ForeColor = Color.SlateGray
         End If
@@ -90,24 +90,13 @@ Public Class FormLogin
             'If the row is created the user exists, and program proceeds to compare what that record has
             'on its Role column to guide the user to the corresponding page on the program
         ElseIf rows.Count > 0 Then
-            If sqlTable.Rows(0).Item("Role") = "admissions" Then
+            If sqlTable.Rows(0).Item("Role") = "administrator" Then
+                MenuCode = "0"
+                PortalMenu.Show()
+                Me.Close()
+            ElseIf sqlTable.Rows(0).Item("Role") = "admissions" Then
                 MenuCode = "1"
-                AdmissionsMenu.Show()
-                Me.Close()
-            ElseIf sqlTable.Rows(0).Item("Role") = "Registrador" Then
-                FormRegistrarOffice.Show()
-                Me.Close()
-            ElseIf sqlTable.Rows(0).Item("Role") = "Asistencia" Then
-                FormFinancAssist.Show()
-                Me.Close()
-            ElseIf sqlTable.Rows(0).Item("Role") = "administrator" Then
-                FormAdmin.Show()
-                Me.Close()
-            ElseIf sqlTable.Rows(0).Item("Role") = "Facultad" Then
-                FormFaculty.Show()
-                Me.Close()
-            ElseIf sqlTable.Rows(0).Item("Role") = "Estudiante" Then
-                FormEstudiantes.Show()
+                PortalMenu.Show()
                 Me.Close()
             End If
         End If

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class AdmissionsUpdateStudent
+Partial Class Admissions
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,13 +23,18 @@ Partial Class AdmissionsUpdateStudent
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.btnExit = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.lblFirstName = New System.Windows.Forms.Label()
         Me.lblLastName = New System.Windows.Forms.Label()
         Me.lblMajor = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.txtStudentUpdate = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.btnAddNewInfo = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lblStudId = New System.Windows.Forms.Label()
+        Me.btnUpdateStudent = New System.Windows.Forms.Button()
         Me.btnSearchStudId = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtStudentInfo = New System.Windows.Forms.TextBox()
         Me.ddlCovid = New System.Windows.Forms.ComboBox()
         Me.lblCovid = New System.Windows.Forms.Label()
         Me.ddlCountry = New System.Windows.Forms.ComboBox()
@@ -50,13 +55,12 @@ Partial Class AdmissionsUpdateStudent
         Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.lblPhone = New System.Windows.Forms.Label()
         Me.lblEmail = New System.Windows.Forms.Label()
-        Me.btnUpdateStudent = New System.Windows.Forms.Button()
+        Me.btnSubmitInfo = New System.Windows.Forms.Button()
         Me.txtIncome = New System.Windows.Forms.TextBox()
         Me.ddlMajor = New System.Windows.Forms.ComboBox()
         Me.txtLastName = New System.Windows.Forms.TextBox()
         Me.txtFirstName = New System.Windows.Forms.TextBox()
         Me.lblIncome = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
@@ -69,12 +73,23 @@ Partial Class AdmissionsUpdateStudent
         '
         Me.btnExit.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.btnExit.Location = New System.Drawing.Point(942, 555)
+        Me.btnExit.Location = New System.Drawing.Point(1061, 544)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(136, 47)
         Me.btnExit.TabIndex = 0
         Me.btnExit.Text = "Exit"
         Me.btnExit.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Dubai", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(20, 13)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(298, 55)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Student Information"
         '
         'lblFirstName
         '
@@ -103,7 +118,7 @@ Partial Class AdmissionsUpdateStudent
         Me.lblMajor.AutoSize = True
         Me.lblMajor.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblMajor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblMajor.Location = New System.Drawing.Point(490, 429)
+        Me.lblMajor.Location = New System.Drawing.Point(490, 419)
         Me.lblMajor.Name = "lblMajor"
         Me.lblMajor.Size = New System.Drawing.Size(84, 42)
         Me.lblMajor.TabIndex = 4
@@ -112,9 +127,13 @@ Partial Class AdmissionsUpdateStudent
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Gainsboro
-        Me.Panel1.Controls.Add(Me.txtStudentUpdate)
-        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.btnAddNewInfo)
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Controls.Add(Me.lblStudId)
+        Me.Panel1.Controls.Add(Me.btnUpdateStudent)
         Me.Panel1.Controls.Add(Me.btnSearchStudId)
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.txtStudentInfo)
         Me.Panel1.Controls.Add(Me.ddlCovid)
         Me.Panel1.Controls.Add(Me.lblCovid)
         Me.Panel1.Controls.Add(Me.ddlCountry)
@@ -135,7 +154,7 @@ Partial Class AdmissionsUpdateStudent
         Me.Panel1.Controls.Add(Me.txtEmail)
         Me.Panel1.Controls.Add(Me.lblPhone)
         Me.Panel1.Controls.Add(Me.lblEmail)
-        Me.Panel1.Controls.Add(Me.btnUpdateStudent)
+        Me.Panel1.Controls.Add(Me.btnSubmitInfo)
         Me.Panel1.Controls.Add(Me.txtIncome)
         Me.Panel1.Controls.Add(Me.btnExit)
         Me.Panel1.Controls.Add(Me.ddlMajor)
@@ -151,41 +170,86 @@ Partial Class AdmissionsUpdateStudent
         Me.Panel1.Size = New System.Drawing.Size(1285, 714)
         Me.Panel1.TabIndex = 5
         '
-        'txtStudentUpdate
+        'btnAddNewInfo
         '
-        Me.txtStudentUpdate.Location = New System.Drawing.Point(745, 34)
-        Me.txtStudentUpdate.Name = "txtStudentUpdate"
-        Me.txtStudentUpdate.Size = New System.Drawing.Size(100, 22)
-        Me.txtStudentUpdate.TabIndex = 36
-        Me.txtStudentUpdate.Visible = False
+        Me.btnAddNewInfo.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAddNewInfo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnAddNewInfo.Location = New System.Drawing.Point(81, 544)
+        Me.btnAddNewInfo.Name = "btnAddNewInfo"
+        Me.btnAddNewInfo.Size = New System.Drawing.Size(136, 47)
+        Me.btnAddNewInfo.TabIndex = 40
+        Me.btnAddNewInfo.Text = "Add New"
+        Me.btnAddNewInfo.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(977, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(195, 16)
+        Me.Label3.TabIndex = 39
+        Me.Label3.Text = "invisible until search loads an id"
+        Me.Label3.Visible = False
+        '
+        'lblStudId
+        '
+        Me.lblStudId.AutoSize = True
+        Me.lblStudId.Font = New System.Drawing.Font("Dubai", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStudId.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.lblStudId.Location = New System.Drawing.Point(910, 13)
+        Me.lblStudId.Name = "lblStudId"
+        Me.lblStudId.Size = New System.Drawing.Size(355, 55)
+        Me.lblStudId.TabIndex = 38
+        Me.lblStudId.Text = "Student ID: M00522144"
+        Me.lblStudId.Visible = False
+        '
+        'btnUpdateStudent
+        '
+        Me.btnUpdateStudent.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnUpdateStudent.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnUpdateStudent.Location = New System.Drawing.Point(821, 544)
+        Me.btnUpdateStudent.Name = "btnUpdateStudent"
+        Me.btnUpdateStudent.Size = New System.Drawing.Size(136, 47)
+        Me.btnUpdateStudent.TabIndex = 37
+        Me.btnUpdateStudent.Text = "Update"
+        Me.btnUpdateStudent.UseVisualStyleBackColor = True
+        '
+        'btnSearchStudId
+        '
+        Me.btnSearchStudId.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSearchStudId.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnSearchStudId.Location = New System.Drawing.Point(584, 544)
+        Me.btnSearchStudId.Name = "btnSearchStudId"
+        Me.btnSearchStudId.Size = New System.Drawing.Size(136, 47)
+        Me.btnSearchStudId.TabIndex = 36
+        Me.btnSearchStudId.Text = "Search"
+        Me.btnSearchStudId.UseVisualStyleBackColor = True
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(702, 13)
+        Me.Label2.Location = New System.Drawing.Point(1037, 657)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(231, 16)
+        Me.Label2.Size = New System.Drawing.Size(218, 16)
         Me.Label2.TabIndex = 35
-        Me.Label2.Text = "invisible textbox to store info to update"
+        Me.Label2.Text = "Invisible textbox to store student info"
         Me.Label2.Visible = False
         '
-        'btnSearchStudId
+        'txtStudentInfo
         '
-        Me.btnSearchStudId.Font = New System.Drawing.Font("Dubai", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearchStudId.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.btnSearchStudId.Location = New System.Drawing.Point(190, 555)
-        Me.btnSearchStudId.Name = "btnSearchStudId"
-        Me.btnSearchStudId.Size = New System.Drawing.Size(136, 47)
-        Me.btnSearchStudId.TabIndex = 34
-        Me.btnSearchStudId.Text = "Search"
-        Me.btnSearchStudId.UseVisualStyleBackColor = True
+        Me.txtStudentInfo.Location = New System.Drawing.Point(1082, 676)
+        Me.txtStudentInfo.Multiline = True
+        Me.txtStudentInfo.Name = "txtStudentInfo"
+        Me.txtStudentInfo.Size = New System.Drawing.Size(100, 22)
+        Me.txtStudentInfo.TabIndex = 34
+        Me.txtStudentInfo.Visible = False
         '
         'ddlCovid
         '
         Me.ddlCovid.Font = New System.Drawing.Font("Dubai", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ddlCovid.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ddlCovid.FormattingEnabled = True
-        Me.ddlCovid.Location = New System.Drawing.Point(1016, 428)
+        Me.ddlCovid.Location = New System.Drawing.Point(1016, 418)
         Me.ddlCovid.Name = "ddlCovid"
         Me.ddlCovid.Size = New System.Drawing.Size(239, 42)
         Me.ddlCovid.TabIndex = 33
@@ -195,7 +259,7 @@ Partial Class AdmissionsUpdateStudent
         Me.lblCovid.AutoSize = True
         Me.lblCovid.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblCovid.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblCovid.Location = New System.Drawing.Point(893, 429)
+        Me.lblCovid.Location = New System.Drawing.Point(893, 419)
         Me.lblCovid.Name = "lblCovid"
         Me.lblCovid.Size = New System.Drawing.Size(129, 42)
         Me.lblCovid.TabIndex = 32
@@ -235,7 +299,7 @@ Partial Class AdmissionsUpdateStudent
         '
         Me.txtCity.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCity.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.txtCity.Location = New System.Drawing.Point(72, 339)
+        Me.txtCity.Location = New System.Drawing.Point(72, 340)
         Me.txtCity.Multiline = True
         Me.txtCity.Name = "txtCity"
         Me.txtCity.Size = New System.Drawing.Size(245, 43)
@@ -246,7 +310,7 @@ Partial Class AdmissionsUpdateStudent
         Me.lblCountry.AutoSize = True
         Me.lblCountry.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblCountry.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblCountry.Location = New System.Drawing.Point(893, 342)
+        Me.lblCountry.Location = New System.Drawing.Point(893, 341)
         Me.lblCountry.Name = "lblCountry"
         Me.lblCountry.Size = New System.Drawing.Size(105, 42)
         Me.lblCountry.TabIndex = 26
@@ -257,7 +321,7 @@ Partial Class AdmissionsUpdateStudent
         Me.lblZipcode.AutoSize = True
         Me.lblZipcode.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblZipcode.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblZipcode.Location = New System.Drawing.Point(640, 342)
+        Me.lblZipcode.Location = New System.Drawing.Point(640, 340)
         Me.lblZipcode.Name = "lblZipcode"
         Me.lblZipcode.Size = New System.Drawing.Size(114, 42)
         Me.lblZipcode.TabIndex = 25
@@ -268,7 +332,7 @@ Partial Class AdmissionsUpdateStudent
         Me.lblState.AutoSize = True
         Me.lblState.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblState.Location = New System.Drawing.Point(332, 342)
+        Me.lblState.Location = New System.Drawing.Point(333, 341)
         Me.lblState.Name = "lblState"
         Me.lblState.Size = New System.Drawing.Size(79, 42)
         Me.lblState.TabIndex = 24
@@ -279,7 +343,7 @@ Partial Class AdmissionsUpdateStudent
         Me.lblCity.AutoSize = True
         Me.lblCity.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblCity.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblCity.Location = New System.Drawing.Point(20, 341)
+        Me.lblCity.Location = New System.Drawing.Point(20, 340)
         Me.lblCity.Name = "lblCity"
         Me.lblCity.Size = New System.Drawing.Size(63, 42)
         Me.lblCity.TabIndex = 23
@@ -289,7 +353,7 @@ Partial Class AdmissionsUpdateStudent
         '
         Me.txtAddress.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAddress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.txtAddress.Location = New System.Drawing.Point(190, 259)
+        Me.txtAddress.Location = New System.Drawing.Point(190, 258)
         Me.txtAddress.Multiline = True
         Me.txtAddress.Name = "txtAddress"
         Me.txtAddress.Size = New System.Drawing.Size(1065, 43)
@@ -321,7 +385,7 @@ Partial Class AdmissionsUpdateStudent
         Me.lblSex.AutoSize = True
         Me.lblSex.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblSex.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblSex.Location = New System.Drawing.Point(996, 172)
+        Me.lblSex.Location = New System.Drawing.Point(996, 174)
         Me.lblSex.Name = "lblSex"
         Me.lblSex.Size = New System.Drawing.Size(60, 42)
         Me.lblSex.TabIndex = 18
@@ -334,7 +398,7 @@ Partial Class AdmissionsUpdateStudent
         Me.txtAge.Location = New System.Drawing.Point(1050, 92)
         Me.txtAge.Multiline = True
         Me.txtAge.Name = "txtAge"
-        Me.txtAge.Size = New System.Drawing.Size(100, 44)
+        Me.txtAge.Size = New System.Drawing.Size(100, 43)
         Me.txtAge.TabIndex = 17
         '
         'lblAge
@@ -355,14 +419,14 @@ Partial Class AdmissionsUpdateStudent
         Me.txtPhone.Location = New System.Drawing.Point(627, 171)
         Me.txtPhone.Multiline = True
         Me.txtPhone.Name = "txtPhone"
-        Me.txtPhone.Size = New System.Drawing.Size(320, 44)
+        Me.txtPhone.Size = New System.Drawing.Size(320, 45)
         Me.txtPhone.TabIndex = 15
         '
         'txtEmail
         '
         Me.txtEmail.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.txtEmail.Location = New System.Drawing.Point(92, 172)
+        Me.txtEmail.Location = New System.Drawing.Point(92, 173)
         Me.txtEmail.Multiline = True
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Size = New System.Drawing.Size(377, 43)
@@ -373,7 +437,7 @@ Partial Class AdmissionsUpdateStudent
         Me.lblPhone.AutoSize = True
         Me.lblPhone.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblPhone.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblPhone.Location = New System.Drawing.Point(504, 171)
+        Me.lblPhone.Location = New System.Drawing.Point(504, 174)
         Me.lblPhone.Name = "lblPhone"
         Me.lblPhone.Size = New System.Drawing.Size(131, 42)
         Me.lblPhone.TabIndex = 13
@@ -390,22 +454,22 @@ Partial Class AdmissionsUpdateStudent
         Me.lblEmail.TabIndex = 12
         Me.lblEmail.Text = "Email:"
         '
-        'btnUpdateStudent
+        'btnSubmitInfo
         '
-        Me.btnUpdateStudent.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUpdateStudent.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.btnUpdateStudent.Location = New System.Drawing.Point(567, 555)
-        Me.btnUpdateStudent.Name = "btnUpdateStudent"
-        Me.btnUpdateStudent.Size = New System.Drawing.Size(136, 47)
-        Me.btnUpdateStudent.TabIndex = 11
-        Me.btnUpdateStudent.Text = "Update"
-        Me.btnUpdateStudent.UseVisualStyleBackColor = True
+        Me.btnSubmitInfo.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSubmitInfo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnSubmitInfo.Location = New System.Drawing.Point(333, 544)
+        Me.btnSubmitInfo.Name = "btnSubmitInfo"
+        Me.btnSubmitInfo.Size = New System.Drawing.Size(136, 47)
+        Me.btnSubmitInfo.TabIndex = 11
+        Me.btnSubmitInfo.Text = "Submit"
+        Me.btnSubmitInfo.UseVisualStyleBackColor = True
         '
         'txtIncome
         '
         Me.txtIncome.Font = New System.Drawing.Font("Dubai", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtIncome.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.txtIncome.Location = New System.Drawing.Point(326, 428)
+        Me.txtIncome.Location = New System.Drawing.Point(326, 415)
         Me.txtIncome.Multiline = True
         Me.txtIncome.Name = "txtIncome"
         Me.txtIncome.Size = New System.Drawing.Size(143, 44)
@@ -416,7 +480,7 @@ Partial Class AdmissionsUpdateStudent
         Me.ddlMajor.Font = New System.Drawing.Font("Dubai", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ddlMajor.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ddlMajor.FormattingEnabled = True
-        Me.ddlMajor.Location = New System.Drawing.Point(567, 430)
+        Me.ddlMajor.Location = New System.Drawing.Point(567, 418)
         Me.ddlMajor.Name = "ddlMajor"
         Me.ddlMajor.Size = New System.Drawing.Size(309, 42)
         Me.ddlMajor.TabIndex = 9
@@ -428,18 +492,18 @@ Partial Class AdmissionsUpdateStudent
         Me.txtLastName.Location = New System.Drawing.Point(632, 92)
         Me.txtLastName.Multiline = True
         Me.txtLastName.Name = "txtLastName"
-        Me.txtLastName.Size = New System.Drawing.Size(315, 44)
+        Me.txtLastName.Size = New System.Drawing.Size(315, 43)
         Me.txtLastName.TabIndex = 7
         '
         'txtFirstName
         '
-        Me.txtFirstName.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.txtFirstName.Font = New System.Drawing.Font("Dubai", 14.0!)
+        Me.txtFirstName.BackColor = System.Drawing.SystemColors.Window
+        Me.txtFirstName.Font = New System.Drawing.Font("Dubai", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFirstName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.txtFirstName.Location = New System.Drawing.Point(150, 92)
         Me.txtFirstName.Multiline = True
         Me.txtFirstName.Name = "txtFirstName"
-        Me.txtFirstName.Size = New System.Drawing.Size(319, 44)
+        Me.txtFirstName.Size = New System.Drawing.Size(319, 43)
         Me.txtFirstName.TabIndex = 6
         '
         'lblIncome
@@ -447,22 +511,11 @@ Partial Class AdmissionsUpdateStudent
         Me.lblIncome.AutoSize = True
         Me.lblIncome.Font = New System.Drawing.Font("Dubai", 15.0!)
         Me.lblIncome.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblIncome.Location = New System.Drawing.Point(20, 429)
+        Me.lblIncome.Location = New System.Drawing.Point(20, 418)
         Me.lblIncome.Name = "lblIncome"
         Me.lblIncome.Size = New System.Drawing.Size(310, 42)
         Me.lblIncome.TabIndex = 5
         Me.lblIncome.Text = "Yearly Household Income:  $"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Dubai", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(20, 13)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(404, 55)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Update Student Information"
         '
         'Panel2
         '
@@ -477,13 +530,13 @@ Partial Class AdmissionsUpdateStudent
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Dubai", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Font = New System.Drawing.Font("Dubai", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(200, 47)
+        Me.Label8.Location = New System.Drawing.Point(196, 33)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(256, 55)
+        Me.Label8.Size = New System.Drawing.Size(587, 67)
         Me.Label8.TabIndex = 7
-        Me.Label8.Text = "Admissions Form"
+        Me.Label8.Text = "Student Information Management"
         '
         'PictureBox1
         '
@@ -495,7 +548,7 @@ Partial Class AdmissionsUpdateStudent
         Me.PictureBox1.TabIndex = 6
         Me.PictureBox1.TabStop = False
         '
-        'AdmissionsUpdateStudent
+        'Admissions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -505,9 +558,9 @@ Partial Class AdmissionsUpdateStudent
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
-        Me.Name = "AdmissionsUpdateStudent"
+        Me.Name = "Admissions"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Inter Metro Information System - Admissions Portal"
+        Me.Text = "InterMetro Information System - Admissions"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
@@ -518,6 +571,7 @@ Partial Class AdmissionsUpdateStudent
     End Sub
 
     Friend WithEvents btnExit As Button
+    Friend WithEvents Label1 As Label
     Friend WithEvents lblFirstName As Label
     Friend WithEvents lblLastName As Label
     Friend WithEvents lblMajor As Label
@@ -527,7 +581,7 @@ Partial Class AdmissionsUpdateStudent
     Friend WithEvents lblIncome As Label
     Friend WithEvents ddlMajor As ComboBox
     Friend WithEvents txtIncome As TextBox
-    Friend WithEvents btnUpdateStudent As Button
+    Friend WithEvents btnSubmitInfo As Button
     Friend WithEvents txtPhone As TextBox
     Friend WithEvents txtEmail As TextBox
     Friend WithEvents lblPhone As Label
@@ -551,8 +605,11 @@ Partial Class AdmissionsUpdateStudent
     Friend WithEvents lblAddress As Label
     Friend WithEvents ddlCovid As ComboBox
     Friend WithEvents lblCovid As Label
-    Friend WithEvents btnSearchStudId As Button
-    Friend WithEvents Label1 As Label
-    Friend WithEvents txtStudentUpdate As TextBox
+    Friend WithEvents txtStudentInfo As TextBox
     Friend WithEvents Label2 As Label
+    Friend WithEvents btnUpdateStudent As Button
+    Friend WithEvents btnSearchStudId As Button
+    Friend WithEvents lblStudId As Label
+    Friend WithEvents Label3 As Label
+    Friend WithEvents btnAddNewInfo As Button
 End Class

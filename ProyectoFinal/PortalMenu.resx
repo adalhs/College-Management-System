@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="TextBox1.Text" xml:space="preserve">
+    <value>There are multiple buttons stacked on top of each other in this form, some may not be visible if stacked directly on top of the other.  This can cause confusion, but was done to avoid making a different menu for every user.  They are turned on/off in the program depending on which user logs in. </value>
+  </data>
 </root>
