@@ -30,6 +30,7 @@ Partial Class PortalMenu
         Me.btnLogout = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.btnRegistrar = New System.Windows.Forms.Button()
         Me.btnAdmin = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
@@ -103,6 +104,7 @@ Partial Class PortalMenu
         Me.Panel1.BackgroundImage = Global.ProyectoFinal.My.Resources.Resources.menu_background
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.Panel1.Controls.Add(Me.TextBox1)
+        Me.Panel1.Controls.Add(Me.btnRegistrar)
         Me.Panel1.Controls.Add(Me.btnAdmin)
         Me.Panel1.Controls.Add(Me.Panel4)
         Me.Panel1.Controls.Add(Me.Panel3)
@@ -123,9 +125,24 @@ Partial Class PortalMenu
         Me.TextBox1.Text = resources.GetString("TextBox1.Text")
         Me.TextBox1.Visible = False
         '
+        'btnRegistrar
+        '
+        Me.btnRegistrar.BackColor = System.Drawing.Color.Gainsboro
+        Me.btnRegistrar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnRegistrar.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRegistrar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnRegistrar.Location = New System.Drawing.Point(260, 188)
+        Me.btnRegistrar.Name = "btnRegistrar"
+        Me.btnRegistrar.Size = New System.Drawing.Size(765, 60)
+        Me.btnRegistrar.TabIndex = 13
+        Me.btnRegistrar.Text = "STUDENT RECORD MANAGEMENT"
+        Me.btnRegistrar.UseVisualStyleBackColor = False
+        Me.btnRegistrar.Visible = False
+        '
         'btnAdmin
         '
         Me.btnAdmin.BackColor = System.Drawing.Color.Gainsboro
+        Me.btnAdmin.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAdmin.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAdmin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnAdmin.Location = New System.Drawing.Point(260, 188)
@@ -200,4 +217,5 @@ Partial Class PortalMenu
     Friend WithEvents Panel4 As Panel
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents btnAdmin As Button
+    Friend WithEvents btnRegistrar As Button
 End Class

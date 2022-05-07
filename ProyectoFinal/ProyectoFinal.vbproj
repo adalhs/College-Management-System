@@ -166,12 +166,6 @@
     <Compile Include="FormBursarsOffice.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormRegistrarOffice.Designer.vb">
-      <DependentUpon>FormRegistrarOffice.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormRegistrarOffice.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="GlobalVariables.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -193,6 +187,12 @@
       <DependentUpon>FormCustomMsgBox.vb</DependentUpon>
     </Compile>
     <Compile Include="FormCustomMsgBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registration.Designer.vb">
+      <DependentUpon>Registration.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Registration.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TextBoxValidation.vb" />
@@ -222,9 +222,6 @@
     <EmbeddedResource Include="FormBursarsOffice.resx">
       <DependentUpon>FormBursarsOffice.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormRegistrarOffice.resx">
-      <DependentUpon>FormRegistrarOffice.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
@@ -233,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCustomMsgBox.resx">
       <DependentUpon>FormCustomMsgBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registration.resx">
+      <DependentUpon>Registration.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

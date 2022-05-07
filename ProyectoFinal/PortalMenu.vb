@@ -6,12 +6,16 @@
         ElseIf MenuCode = "1" Then
             btnAdmissions.Visible = True
             lblMenuName.Text = "Admissions Office Portal"
+        ElseIf MenuCode = "2" Then
+            btnRegistrar.Visible = True
+            lblMenuName.Text = "Registration Office Portal"
         End If
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
         btnAdmin.Visible = False
         btnAdmissions.Visible = False
+        btnRegistrar.Visible = False
         Login.Show()
         Me.Close()
     End Sub
@@ -23,6 +27,11 @@
 
     Private Sub btnAdmin_Click(sender As Object, e As EventArgs) Handles btnAdmin.Click
         AdminForm.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub btnRegistrar_Click(sender As Object, e As EventArgs) Handles btnRegistrar.Click
+        Registration.Show()
         Me.Close()
     End Sub
 End Class

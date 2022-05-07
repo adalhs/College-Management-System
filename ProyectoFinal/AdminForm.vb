@@ -24,6 +24,7 @@ Public Class AdminForm
         ddlPermissions.Items.Add("student")
         ddlPermissions.Items.Add("faculty")
 
+        txtPassword.PasswordChar = "*"
         LockAll()
     End Sub
 
@@ -128,6 +129,7 @@ Public Class AdminForm
 
             MsgBox("Account created successfully.", 64, "Information")
 
+            resetfields()
             LockAll()
         End If
     End Sub

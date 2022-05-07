@@ -71,6 +71,7 @@ Partial Class Admissions
         '
         'btnExit
         '
+        Me.btnExit.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnExit.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnExit.Location = New System.Drawing.Point(1061, 544)
@@ -172,6 +173,7 @@ Partial Class Admissions
         '
         'btnAddNewInfo
         '
+        Me.btnAddNewInfo.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAddNewInfo.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAddNewInfo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnAddNewInfo.Location = New System.Drawing.Point(81, 544)
@@ -205,6 +207,7 @@ Partial Class Admissions
         '
         'btnUpdateStudent
         '
+        Me.btnUpdateStudent.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnUpdateStudent.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnUpdateStudent.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnUpdateStudent.Location = New System.Drawing.Point(821, 544)
@@ -216,6 +219,7 @@ Partial Class Admissions
         '
         'btnSearchStudId
         '
+        Me.btnSearchStudId.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSearchStudId.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSearchStudId.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnSearchStudId.Location = New System.Drawing.Point(584, 544)
@@ -456,6 +460,7 @@ Partial Class Admissions
         '
         'btnSubmitInfo
         '
+        Me.btnSubmitInfo.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSubmitInfo.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSubmitInfo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnSubmitInfo.Location = New System.Drawing.Point(333, 544)

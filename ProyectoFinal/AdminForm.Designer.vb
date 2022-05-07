@@ -48,6 +48,7 @@ Partial Class AdminForm
         '
         'btnExit
         '
+        Me.btnExit.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnExit.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnExit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnExit.Location = New System.Drawing.Point(112, 521)
@@ -104,6 +105,7 @@ Partial Class AdminForm
         '
         'btnUpdate
         '
+        Me.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnUpdate.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnUpdate.Location = New System.Drawing.Point(1008, 521)
@@ -115,6 +117,7 @@ Partial Class AdminForm
         '
         'btnSubmit
         '
+        Me.btnSubmit.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSubmit.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSubmit.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnSubmit.Location = New System.Drawing.Point(784, 521)
@@ -126,6 +129,7 @@ Partial Class AdminForm
         '
         'btnAddUser
         '
+        Me.btnAddUser.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAddUser.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAddUser.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnAddUser.Location = New System.Drawing.Point(112, 113)
@@ -159,6 +163,7 @@ Partial Class AdminForm
         '
         'btnDeleteUser
         '
+        Me.btnDeleteUser.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnDeleteUser.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDeleteUser.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnDeleteUser.Location = New System.Drawing.Point(112, 388)
@@ -212,6 +217,7 @@ Partial Class AdminForm
         '
         'btnChangePermissions
         '
+        Me.btnChangePermissions.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnChangePermissions.Font = New System.Drawing.Font("Dubai", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnChangePermissions.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.btnChangePermissions.Location = New System.Drawing.Point(112, 253)

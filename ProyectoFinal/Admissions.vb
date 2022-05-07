@@ -44,7 +44,6 @@ Public Class Admissions
         ddlCountry.Items.Add("Puerto Rico")
 
         ddlMajor.Text = "Choose one option:"
-        ddlMajor.Items.Add("Undeclared")
         ddlMajor.Items.Add("Computer Science")
         ddlMajor.Items.Add("Chemistry")
 

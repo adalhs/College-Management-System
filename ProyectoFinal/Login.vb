@@ -92,13 +92,13 @@ Public Class Login
         ElseIf rows.Count > 0 Then
             If sqlTable.Rows(0).Item("Role") = "administrator" Then
                 MenuCode = "0"
-                PortalMenu.Show()
-                Me.Close()
             ElseIf sqlTable.Rows(0).Item("Role") = "admissions" Then
                 MenuCode = "1"
-                PortalMenu.Show()
-                Me.Close()
+            ElseIf sqlTable.Rows(0).Item("Role") = "registrar" Then
+                MenuCode = "2"
             End If
+            PortalMenu.Show()
+            Me.Close()
         End If
     End Sub
 End Class
