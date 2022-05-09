@@ -77,6 +77,11 @@ Public Class Registration
         ElseIf sqlTableStudent.Rows.Count = 0 Then
             MsgBox("ID: " & idlookup & " not found.", 64, "Information")
 
+            'User entered something on the idlookup inputbox and it mached a PersonId in the Person table but person still
+            'has not been assigned a Role by admin to tell whether this person is a student or not
+        ElseIf sqlTableStudent.Rows.Count > 0 And IsDBNull((sqlTableStudent.Rows(0).Item("Role"))) Then
+            MsgBox("ID: " & idlookup & " has not been assigned a role.  See admin.", 64, "Information")
+
             'User entered something on the idlookup inputbox and it matched a PersonId in the Person table but does not belong
             'to a record with Role = student
         ElseIf sqlTableStudent.Rows.Count > 0 And Not sqlTableStudent.Rows(0).Item("Role") = "student" Then

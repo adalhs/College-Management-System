@@ -123,28 +123,16 @@
     <Compile Include="AdminForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Faculty.Designer.vb">
+      <DependentUpon>Faculty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Faculty.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PortalMenu.Designer.vb">
       <DependentUpon>PortalMenu.vb</DependentUpon>
     </Compile>
     <Compile Include="PortalMenu.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormFinancAssist.Designer.vb">
-      <DependentUpon>FormFinancAssist.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormFinancAssist.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormEstudiantes.Designer.vb">
-      <DependentUpon>FormEstudiantes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormEstudiantes.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormFaculty.Designer.vb">
-      <DependentUpon>FormFaculty.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormFaculty.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.vb">
@@ -158,12 +146,6 @@
       <DependentUpon>Admissions.vb</DependentUpon>
     </Compile>
     <Compile Include="Admissions.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormBursarsOffice.Designer.vb">
-      <DependentUpon>FormBursarsOffice.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FormBursarsOffice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GlobalVariables.vb" />
@@ -201,26 +183,17 @@
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Faculty.resx">
+      <DependentUpon>Faculty.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PortalMenu.resx">
       <DependentUpon>PortalMenu.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormFinancAssist.resx">
-      <DependentUpon>FormFinancAssist.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormEstudiantes.resx">
-      <DependentUpon>FormEstudiantes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormFaculty.resx">
-      <DependentUpon>FormFaculty.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admissions.resx">
       <DependentUpon>Admissions.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormBursarsOffice.resx">
-      <DependentUpon>FormBursarsOffice.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

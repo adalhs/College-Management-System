@@ -71,6 +71,11 @@ Public Class Login
         sqlReader.Close()
         sqlConn.Close()
 
+        'Setting these global variables to username and password, at the time of this writing, these are mostly only used in the
+        'Faculty form to load the instructor's sections as soon as the form loads without needing any extra input from them
+        user = txtUsername.Text
+        pass = txtPassword.Text
+
         'An invisible row is created with the record that has what the user wrote on txtUsername on its Username
         'column in the Person table, if there is no record with that Username on the table, the row is not created
         Dim rows() As DataRow = sqlTable.Select("[Username]= '" & txtUsername.Text.Trim & "'")
@@ -90,12 +95,14 @@ Public Class Login
             'If the row is created the user exists, and program proceeds to compare what that record has
             'on its Role column to guide the user to the corresponding page on the program
         ElseIf rows.Count > 0 Then
-            If sqlTable.Rows(0).Item("Role") = "administrator" Then
+            If sqlTable.Rows(0).Item("Role") = "admin" Then
                 MenuCode = "0"
             ElseIf sqlTable.Rows(0).Item("Role") = "admissions" Then
                 MenuCode = "1"
             ElseIf sqlTable.Rows(0).Item("Role") = "registrar" Then
                 MenuCode = "2"
+            ElseIf sqlTable.Rows(0).Item("Role") = "faculty" Then
+                MenuCode = "3"
             End If
             PortalMenu.Show()
             Me.Close()

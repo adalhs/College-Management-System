@@ -26,14 +26,15 @@ Partial Class PortalMenu
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.lblMenuName = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.btnAdmissions = New System.Windows.Forms.Button()
-        Me.btnLogout = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.btnFaculty = New System.Windows.Forms.Button()
         Me.btnRegistrar = New System.Windows.Forms.Button()
         Me.btnAdmin = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.btnLogout = New System.Windows.Forms.Button()
+        Me.btnAdmissions = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -70,40 +71,13 @@ Partial Class PortalMenu
         Me.PictureBox1.TabIndex = 6
         Me.PictureBox1.TabStop = False
         '
-        'btnAdmissions
-        '
-        Me.btnAdmissions.BackColor = System.Drawing.Color.Gainsboro
-        Me.btnAdmissions.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnAdmissions.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.btnAdmissions.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAdmissions.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.btnAdmissions.Location = New System.Drawing.Point(260, 188)
-        Me.btnAdmissions.Name = "btnAdmissions"
-        Me.btnAdmissions.Size = New System.Drawing.Size(765, 60)
-        Me.btnAdmissions.TabIndex = 8
-        Me.btnAdmissions.Text = "STUDENT INFORMATION MANAGEMENT"
-        Me.btnAdmissions.UseVisualStyleBackColor = False
-        Me.btnAdmissions.Visible = False
-        '
-        'btnLogout
-        '
-        Me.btnLogout.BackColor = System.Drawing.Color.Gainsboro
-        Me.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnLogout.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnLogout.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.btnLogout.Location = New System.Drawing.Point(260, 452)
-        Me.btnLogout.Name = "btnLogout"
-        Me.btnLogout.Size = New System.Drawing.Size(765, 60)
-        Me.btnLogout.TabIndex = 10
-        Me.btnLogout.Text = "LOG OUT"
-        Me.btnLogout.UseVisualStyleBackColor = False
-        '
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Panel1.BackgroundImage = Global.ProyectoFinal.My.Resources.Resources.menu_background
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.Panel1.Controls.Add(Me.TextBox1)
+        Me.Panel1.Controls.Add(Me.btnFaculty)
         Me.Panel1.Controls.Add(Me.btnRegistrar)
         Me.Panel1.Controls.Add(Me.btnAdmin)
         Me.Panel1.Controls.Add(Me.Panel4)
@@ -124,6 +98,20 @@ Partial Class PortalMenu
         Me.TextBox1.TabIndex = 14
         Me.TextBox1.Text = resources.GetString("TextBox1.Text")
         Me.TextBox1.Visible = False
+        '
+        'btnFaculty
+        '
+        Me.btnFaculty.BackColor = System.Drawing.Color.Gainsboro
+        Me.btnFaculty.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnFaculty.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnFaculty.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnFaculty.Location = New System.Drawing.Point(260, 188)
+        Me.btnFaculty.Name = "btnFaculty"
+        Me.btnFaculty.Size = New System.Drawing.Size(765, 60)
+        Me.btnFaculty.TabIndex = 13
+        Me.btnFaculty.Text = "GRADE DETAIL MANAGEMENT"
+        Me.btnFaculty.UseVisualStyleBackColor = False
+        Me.btnFaculty.Visible = False
         '
         'btnRegistrar
         '
@@ -168,6 +156,34 @@ Partial Class PortalMenu
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(115, 714)
         Me.Panel3.TabIndex = 11
+        '
+        'btnLogout
+        '
+        Me.btnLogout.BackColor = System.Drawing.Color.Gainsboro
+        Me.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnLogout.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLogout.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnLogout.Location = New System.Drawing.Point(260, 452)
+        Me.btnLogout.Name = "btnLogout"
+        Me.btnLogout.Size = New System.Drawing.Size(765, 60)
+        Me.btnLogout.TabIndex = 10
+        Me.btnLogout.Text = "LOG OUT"
+        Me.btnLogout.UseVisualStyleBackColor = False
+        '
+        'btnAdmissions
+        '
+        Me.btnAdmissions.BackColor = System.Drawing.Color.Gainsboro
+        Me.btnAdmissions.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAdmissions.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.btnAdmissions.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAdmissions.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnAdmissions.Location = New System.Drawing.Point(260, 188)
+        Me.btnAdmissions.Name = "btnAdmissions"
+        Me.btnAdmissions.Size = New System.Drawing.Size(765, 60)
+        Me.btnAdmissions.TabIndex = 8
+        Me.btnAdmissions.Text = "STUDENT INFORMATION MANAGEMENT"
+        Me.btnAdmissions.UseVisualStyleBackColor = False
+        Me.btnAdmissions.Visible = False
         '
         'PortalMenu
         '
@@ -218,4 +234,5 @@ Partial Class PortalMenu
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents btnAdmin As Button
     Friend WithEvents btnRegistrar As Button
+    Friend WithEvents btnFaculty As Button
 End Class
