@@ -28,6 +28,7 @@ Partial Class PortalMenu
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.btnAcademicRecord = New System.Windows.Forms.Button()
         Me.btnFaculty = New System.Windows.Forms.Button()
         Me.btnRegistrar = New System.Windows.Forms.Button()
         Me.btnAdmin = New System.Windows.Forms.Button()
@@ -35,6 +36,7 @@ Partial Class PortalMenu
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.btnLogout = New System.Windows.Forms.Button()
         Me.btnAdmissions = New System.Windows.Forms.Button()
+        Me.btnPayments = New System.Windows.Forms.Button()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -77,6 +79,8 @@ Partial Class PortalMenu
         Me.Panel1.BackgroundImage = Global.ProyectoFinal.My.Resources.Resources.menu_background
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.Panel1.Controls.Add(Me.TextBox1)
+        Me.Panel1.Controls.Add(Me.btnPayments)
+        Me.Panel1.Controls.Add(Me.btnAcademicRecord)
         Me.Panel1.Controls.Add(Me.btnFaculty)
         Me.Panel1.Controls.Add(Me.btnRegistrar)
         Me.Panel1.Controls.Add(Me.btnAdmin)
@@ -98,6 +102,20 @@ Partial Class PortalMenu
         Me.TextBox1.TabIndex = 14
         Me.TextBox1.Text = resources.GetString("TextBox1.Text")
         Me.TextBox1.Visible = False
+        '
+        'btnAcademicRecord
+        '
+        Me.btnAcademicRecord.BackColor = System.Drawing.Color.Gainsboro
+        Me.btnAcademicRecord.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAcademicRecord.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAcademicRecord.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnAcademicRecord.Location = New System.Drawing.Point(260, 188)
+        Me.btnAcademicRecord.Name = "btnAcademicRecord"
+        Me.btnAcademicRecord.Size = New System.Drawing.Size(765, 60)
+        Me.btnAcademicRecord.TabIndex = 13
+        Me.btnAcademicRecord.Text = "VIEW ACADEMIC RECORD"
+        Me.btnAcademicRecord.UseVisualStyleBackColor = False
+        Me.btnAcademicRecord.Visible = False
         '
         'btnFaculty
         '
@@ -185,6 +203,20 @@ Partial Class PortalMenu
         Me.btnAdmissions.UseVisualStyleBackColor = False
         Me.btnAdmissions.Visible = False
         '
+        'btnPayments
+        '
+        Me.btnPayments.BackColor = System.Drawing.Color.Gainsboro
+        Me.btnPayments.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnPayments.Font = New System.Drawing.Font("Dubai", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnPayments.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.btnPayments.Location = New System.Drawing.Point(260, 318)
+        Me.btnPayments.Name = "btnPayments"
+        Me.btnPayments.Size = New System.Drawing.Size(765, 60)
+        Me.btnPayments.TabIndex = 13
+        Me.btnPayments.Text = "PAYMENTS MANAGEMENT SYSTEM"
+        Me.btnPayments.UseVisualStyleBackColor = False
+        Me.btnPayments.Visible = False
+        '
         'PortalMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -235,4 +267,6 @@ Partial Class PortalMenu
     Friend WithEvents btnAdmin As Button
     Friend WithEvents btnRegistrar As Button
     Friend WithEvents btnFaculty As Button
+    Friend WithEvents btnAcademicRecord As Button
+    Friend WithEvents btnPayments As Button
 End Class

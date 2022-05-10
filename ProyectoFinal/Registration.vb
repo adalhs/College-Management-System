@@ -14,6 +14,13 @@ Public Class Registration
     Dim sqlTableEnrollment As New DataTable  'invisible table to hold Enrollment data to see what, if any classes student has already
     'enrolled in.  Student can only enroll in a maximum of 4 courses
 
+    Dim sqlTableCourseForDrop As New DataTable  'This datatable will be used to load the course we are going to drop so we
+    'can get its credits to take off the correct amount from BalanceDue when we drop the course. I had to create another
+    'table for this because in the current way the program flows, TableCourse is filled with more than one course when
+    'we get to the function that will drop the course from the CurrentTermEnrollment table (It's in the btnSubmit_Click Sub)
+    'and there is no way to know which row of that table the course we want to take off is in, potentially leading to taking
+    'off the incorrect amount of money due to different Credits from the Course table.
+
     Dim sqlTableGradeDetail As New DataTable   'invisible table to hold GradeDetail data so we can add a grade detail for the student
     'for that course in the GradeDetail table when we add a course, remove it when we drop a course, and to check if the student
     'fulfills PreRequisite classes for certain courses and obtained 60 or greater final grade in the Prerequisite course
@@ -258,6 +265,8 @@ Public Class Registration
     'is Enabled = True, it will change Major of the student to selected one.  Must be careful to not allow both ddls to be Enabled = True
     'at the same time.
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+        sqlTableCourseForDrop.Clear()
+
         sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
             + "Password =" + password + ";" + "Database =" + database
 
@@ -285,9 +294,23 @@ Public Class Registration
 Doing so will get rid of any grades the student has attained in this course and is an IRREVERSIBLE process.",
                             MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "WARNING") = MsgBoxResult.Yes Then
 
+                                'Loads Credits of course to be taken off for BalanceDue calculations
+                                sqlCmd.CommandText = "SELECT * FROM Course
+                                WHERE CourseCode = '" & sqlTableEnrollment.Rows(0).Item("CourseCode" & i & "") & "'"
+                                sqlReader = sqlCmd.ExecuteReader
+                                sqlTableCourseForDrop.Load(sqlReader)
+                                sqlReader.Close()
+
+                                'Takes SectionId and CourseCode of the course off the CurrentTermEnrollment table and
+                                'subtracts the amount owed for the course from BalanceDue.  Sets both Grant fields to 
+                                'NULL since the student has changed the amount of credits they had.  They must re-apply
+                                'for student aid in their portal.
                                 sqlCmd.CommandText = "UPDATE CurrentTermEnrollment SET SectionId" & i & " = NULL,
                                 CourseCode" & i & " = NULL,
-                                BalanceDue = BalanceDue - 500 WHERE StudentId = '" & idlookup & "'"
+                                BalanceDue = BalanceDue - 180 * " & sqlTableCourseForDrop.Rows(0).Item("Credits") & ",
+                                GrantAmount = NULL,
+                                GrantAvailable = NULL
+                                WHERE StudentId = '" & idlookup & "'"
                                 sqlReader = sqlCmd.ExecuteReader
                                 sqlReader.Close()
 
@@ -403,7 +426,8 @@ Doing so will get rid of any grades the student has attained in this course and 
         If Not sqlTableCourse.Rows(0).Item("PreReq") = "" Then
             For Each row As DataRow In sqlTableGradeDetail.Rows
 
-                'Evaluates courses not currently in progress (Where FinalPercent has already been applied)
+                'Evaluates courses that are currently not in progress (Where FinalPercent has already been applied)
+                'to check for prerequisite completion
                 If Not IsDBNull(row.Item("FinalPercent")) Then
 
                     'If student completed PreReq with >= 60%
@@ -482,27 +506,33 @@ Doing so will get rid of any grades the student has attained in this course and 
                 Next
 
                 'If Student already has a record in the CurrentTermEnrollment table, it adds the SectionId and CourseCode
-                'of the class to their record along with balance related fields
+                'of the class to their record along with balance.  BalanceDue is updated with the course's cost, which is
+                '$180.00 per credit, multiplied by the course's credit hours. Sets both Grant fields to 
+                'NULL since the student has changed the amount of credits they had.  They must re-apply
+                'for student aid in their portal.
                 sqlCmd.CommandText = "UPDATE CurrentTermEnrollment
                 SET " & section & " = '" & sqlTableSection.Rows(0).Item("SectionId") & "',
                 " & course & " = '" & sqlTableSection.Rows(0).Item("CourseCode") & "',
-                BalanceDue = BalanceDue + 500,
-                GrantAmount = 0.00,
-                GrantAvailable = 0.00 WHERE StudentId = '" & idlookup & "'"
+                BalanceDue = BalanceDue + 180 * " & sqlTableCourse.Rows(0).Item("Credits") & ",
+                GrantAmount = NULL,
+                GrantAvailable = NULL
+                WHERE StudentId = '" & idlookup & "'"
                 sqlReader = sqlCmd.ExecuteReader
 
                 'If student doesn't have a record in the CurrentTermEnrollment table, it adds the EnrollmentId and StudentId
                 'along with the SectionId and CourseCode along with balance related fields.  This will be the first class added so
-                'it is not necessary to do BalanceDue + 500 for the BalanceDue, like above, just 500 suffices.
+                'it is not necessary to do BalanceDue + 500 for the BalanceDue, like above, just 500 suffices. Sets both Grant fields to 
+                'NULL since the student has changed the amount of credits they had.  They must re-apply
+                'for student aid in their portal.
             Else
                 sqlCmd.CommandText = "INSERT INTO CurrentTermEnrollment (EnrollmentId, StudentId, " & section & ", " & course & ", BalanceDue, GrantAmount, GrantAvailable)
                 VALUES('" & idlookup & "" & currentterm & "',
                 '" & idlookup & "',
                 '" & sqlTableSection.Rows(0).Item("SectionId") & "',
                 '" & sqlTableSection.Rows(0).Item("CourseCode") & "',
-                500,
-                0,
-                0)"
+                180 * " & sqlTableCourse.Rows(0).Item("Credits") & ",
+                NULL,
+                NULL)"
                 sqlReader = sqlCmd.ExecuteReader
             End If
 

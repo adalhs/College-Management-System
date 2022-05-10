@@ -103,6 +103,8 @@ Public Class Login
                 MenuCode = "2"
             ElseIf sqlTable.Rows(0).Item("Role") = "faculty" Then
                 MenuCode = "3"
+            ElseIf sqlTable.Rows(0).Item("Role") = "student" Then
+                MenuCode = "4"
             End If
             PortalMenu.Show()
             Me.Close()

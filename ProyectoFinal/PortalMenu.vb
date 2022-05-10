@@ -12,6 +12,10 @@
         ElseIf MenuCode = "3" Then
             btnFaculty.Visible = True
             lblMenuName.Text = "Faculty Portal"
+        ElseIf MenuCode = "4" Then
+            btnAcademicRecord.Visible = True
+            btnPayments.Visible = True
+            lblMenuName.Text = "Student Portal"
         End If
     End Sub
 
@@ -20,6 +24,8 @@
         btnAdmissions.Visible = False
         btnRegistrar.Visible = False
         btnFaculty.Visible = False
+        btnAcademicRecord.Visible = False
+        btnPayments.Visible = False
 
         'Setting these global variables back to blank
         user = ""
@@ -46,6 +52,16 @@
 
     Private Sub btnFaculty_Click(sender As Object, e As EventArgs) Handles btnFaculty.Click
         Faculty.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub btnAcademicRecord_Click(sender As Object, e As EventArgs) Handles btnAcademicRecord.Click
+        StudentRecord.Show()
+        Me.Close()
+    End Sub
+
+    Private Sub btnPayments_Click(sender As Object, e As EventArgs) Handles btnPayments.Click
+        StudentPayments.Show()
         Me.Close()
     End Sub
 End Class

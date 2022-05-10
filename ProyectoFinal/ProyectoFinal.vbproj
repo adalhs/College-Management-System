@@ -177,6 +177,18 @@
     <Compile Include="Registration.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="StudentPayments.Designer.vb">
+      <DependentUpon>StudentPayments.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StudentPayments.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentRecord.Designer.vb">
+      <DependentUpon>StudentRecord.vb</DependentUpon>
+    </Compile>
+    <Compile Include="StudentRecord.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="TextBoxValidation.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +218,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registration.resx">
       <DependentUpon>Registration.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentPayments.resx">
+      <DependentUpon>StudentPayments.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentRecord.resx">
+      <DependentUpon>StudentRecord.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

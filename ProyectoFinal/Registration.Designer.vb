@@ -305,7 +305,7 @@ Partial Class Registration
         Me.MaximizeBox = False
         Me.Name = "Registration"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "InterMetro Information System - Accounts Administration"
+        Me.Text = "InterMetro Information System - Registrar's Office"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)

@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
-Public Class Faculty
+Public Class StudentRecord
 
     Dim sqlConn As New SqlConnection  'represents a unique session(connection) to a SQL Server data source
     Dim sqlCmd As New SqlCommand
@@ -511,7 +511,7 @@ from this course, are you sure you want to proceed?",
         btnAW.Enabled = False
         btnCancel.Enabled = False
         ddlEnrolled.Enabled = False
-        lblStudentInfo.Visible = False
+        'lblStudentInfo.Visible = False
         ddlGradeDetail.Enabled = True
         ddlGradeDetail.BackColor = Drawing.Color.White
     End Sub

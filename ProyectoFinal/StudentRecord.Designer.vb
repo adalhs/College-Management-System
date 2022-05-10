@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Faculty
+Partial Class StudentRecord
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -27,12 +27,12 @@ Partial Class Faculty
         Me.lblEnrolled = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ddlAssignedSections = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtInformation = New System.Windows.Forms.TextBox()
         Me.btnCancel = New System.Windows.Forms.Button()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.btnAW = New System.Windows.Forms.Button()
         Me.btnFinalGrade = New System.Windows.Forms.Button()
         Me.btnEnterGrade = New System.Windows.Forms.Button()
-        Me.lblStudentInfo = New System.Windows.Forms.Label()
         Me.btnLoadDetail = New System.Windows.Forms.Button()
         Me.btnLoadSection = New System.Windows.Forms.Button()
         Me.ddlEnrolled = New System.Windows.Forms.ComboBox()
@@ -84,12 +84,12 @@ Partial Class Faculty
         '
         Me.Panel1.BackColor = System.Drawing.Color.Gainsboro
         Me.Panel1.Controls.Add(Me.ddlAssignedSections)
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.txtInformation)
         Me.Panel1.Controls.Add(Me.btnCancel)
-        Me.Panel1.Controls.Add(Me.Label3)
         Me.Panel1.Controls.Add(Me.btnAW)
         Me.Panel1.Controls.Add(Me.btnFinalGrade)
         Me.Panel1.Controls.Add(Me.btnEnterGrade)
-        Me.Panel1.Controls.Add(Me.lblStudentInfo)
         Me.Panel1.Controls.Add(Me.btnLoadDetail)
         Me.Panel1.Controls.Add(Me.btnLoadSection)
         Me.Panel1.Controls.Add(Me.ddlEnrolled)
@@ -113,6 +113,24 @@ Partial Class Faculty
         Me.ddlAssignedSections.Size = New System.Drawing.Size(486, 42)
         Me.ddlAssignedSections.TabIndex = 45
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(915, 650)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(357, 16)
+        Me.Label2.TabIndex = 44
+        Me.Label2.Text = "invisible textbox to hold info to pass to FormCustomMsgBox"
+        Me.Label2.Visible = False
+        '
+        'txtInformation
+        '
+        Me.txtInformation.Location = New System.Drawing.Point(1052, 669)
+        Me.txtInformation.Name = "txtInformation"
+        Me.txtInformation.Size = New System.Drawing.Size(100, 22)
+        Me.txtInformation.TabIndex = 43
+        Me.txtInformation.Visible = False
+        '
         'btnCancel
         '
         Me.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand
@@ -124,16 +142,6 @@ Partial Class Faculty
         Me.btnCancel.TabIndex = 42
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(450, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(231, 16)
-        Me.Label3.TabIndex = 39
-        Me.Label3.Text = "invisible until search loads information"
-        Me.Label3.Visible = False
         '
         'btnAW
         '
@@ -170,18 +178,6 @@ Partial Class Faculty
         Me.btnEnterGrade.TabIndex = 41
         Me.btnEnterGrade.Text = "Enter Grade"
         Me.btnEnterGrade.UseVisualStyleBackColor = True
-        '
-        'lblStudentInfo
-        '
-        Me.lblStudentInfo.AutoSize = True
-        Me.lblStudentInfo.Font = New System.Drawing.Font("Dubai", 19.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStudentInfo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblStudentInfo.Location = New System.Drawing.Point(443, 13)
-        Me.lblStudentInfo.Name = "lblStudentInfo"
-        Me.lblStudentInfo.Size = New System.Drawing.Size(217, 55)
-        Me.lblStudentInfo.TabIndex = 38
-        Me.lblStudentInfo.Text = "ID Placeholder"
-        Me.lblStudentInfo.Visible = False
         '
         'btnLoadDetail
         '
@@ -255,9 +251,9 @@ Partial Class Faculty
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.Label8.Location = New System.Drawing.Point(196, 33)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(459, 67)
+        Me.Label8.Size = New System.Drawing.Size(309, 67)
         Me.Label8.TabIndex = 7
-        Me.Label8.Text = "Grade Detail Management"
+        Me.Label8.Text = "Academic Record"
         '
         'PictureBox1
         '
@@ -269,7 +265,7 @@ Partial Class Faculty
         Me.PictureBox1.TabIndex = 6
         Me.PictureBox1.TabStop = False
         '
-        'Faculty
+        'StudentRecord
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -279,9 +275,9 @@ Partial Class Faculty
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
-        Me.Name = "Faculty"
+        Me.Name = "StudentRecord"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "InterMetro Information System - Faculty Portal"
+        Me.Text = "InterMetro Information System - Student Portal"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
@@ -300,12 +296,12 @@ Partial Class Faculty
     Friend WithEvents Label8 As Label
     Friend WithEvents ddlGradeDetail As ComboBox
     Friend WithEvents lblGradeDetail As Label
-    Friend WithEvents lblStudentInfo As Label
-    Friend WithEvents Label3 As Label
     Friend WithEvents btnEnterGrade As Button
     Friend WithEvents btnCancel As Button
     Friend WithEvents btnLoadSection As Button
     Friend WithEvents ddlEnrolled As ComboBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents txtInformation As TextBox
     Friend WithEvents btnAW As Button
     Friend WithEvents btnFinalGrade As Button
     Friend WithEvents ddlAssignedSections As ComboBox
