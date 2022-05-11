@@ -6,18 +6,19 @@ Public Class StudentRecord
     Dim sqlCmd As New SqlCommand
     Dim sqlReader As SqlDataReader   'sqlReader is not an object, does not need "New"
 
-    Dim sqlTableStudents As New DataTable    'invisible table to hold student info, (to get the names of students enrolled in section)
-    Dim sqlTableSections As New DataTable    'invisible table to hold the instructor's sections
-    Dim sqlTableInstructor As New DataTable  'invisible table to hold Instructor data from Person table to get their sections upon form load
-    Dim sqlTableCourse As New DataTable      'invisible table to hold Course data from the Course table
-    Dim sqlTableDetail As New DataTable      'invisible table to hold data from GradeDetail table regarding selected section
+    Dim sqlTableStudent As New DataTable
+    Dim sqlTableEnrollment As New DataTable
+    Dim sqlTableCourse As New DataTable
+    Dim sqlTableCourses As New DataTable
+    Dim sqlTableCourseGrades As New DataTable
+    Dim sqlTableGradeDetail As New DataTable
+
+
+
     Dim sqlTableGrades As New DataTable      'invisible table to load student grades into ddlGradeDetail
     Dim sqlTableFinishedCourses As New DataTable  'invisible table used to hold all DetailIds with student final grades
     Dim sqlTableCourseCredits As New DataTable  'invisible table to hold all courses, will use to get the credits of the courses
     'for GPA calculation
-
-    Dim sqlTableEnrollment As New DataTable  'invisible table to hold Enrollment data, when giving an AW to students,
-    'they SectionId and CourseCode must also be taken off their record in the CurrentTermEnrollment table
 
     Dim server As String = "LAPTOP-11N7BEC8\SQLEXPRESS"
     Dim username As String = "sa"
@@ -56,39 +57,32 @@ Public Class StudentRecord
         sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
             + "Password =" + password + ";" + "Database =" + database
 
-        LockAll()
-
-        'Should be available at start
-        ddlAssignedSections.BackColor = Drawing.Color.White
-        ddlAssignedSections.Enabled = True
-        ddlAssignedSections.Text = "Assigned Sections"
-        btnLoadSection.Enabled = True
-
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
 
-        'Loads record matching username and password provided to sqlTableInstructor
+        'Loads student's record from Person to get their student number
         sqlCmd.CommandText = "SELECT * From Person WHERE Username = '" & user & "' AND Password = '" & pass & "'"
         sqlReader = sqlCmd.ExecuteReader
-        sqlTableInstructor.Load(sqlReader)
+        sqlTableStudent.Load(sqlReader)
 
-        'Loads sections of instructor in sqlTableInstructor to sqlTableSections
-        sqlCmd.CommandText = "SELECT * From CourseSection WHERE InstructorId = '" & sqlTableInstructor.Rows(0).Item("PersonId") & "'"
+        'Loads student's record from CurrentTermEnrollment to get their currently enrolled courses
+        sqlCmd.CommandText = "SELECT * From CurrentTermEnrollment
+        WHERE StudentId = '" & sqlTableStudent.Rows(0).Item("PersonId") & "'
+        AND EnrollmentId like '%" & currentterm & "%'"
         sqlReader = sqlCmd.ExecuteReader
-        sqlTableSections.Load(sqlReader)
+        sqlTableEnrollment.Load(sqlReader)
 
-        If sqlTableSections.Rows.Count > 0 Then
-            For i = 0 To sqlTableSections.Rows.Count - 1
-                sqlTableCourse.Clear()
+        'Loads courses from Course table to get their names
+        sqlCmd.CommandText = "SELECT * From Course"
+        sqlReader = sqlCmd.ExecuteReader
+        sqlTableCourses.Load(sqlReader)
 
-                'Loads course information of the section from Course table (CourseCode and CourseName is all I need)
-                sqlCmd.CommandText = "SELECT * From Course WHERE CourseCode = '" & sqlTableSections.Rows(i).Item("CourseCode") & "'"
-                sqlReader = sqlCmd.ExecuteReader
-                sqlTableCourse.Load(sqlReader)
+        'Loads student's record from GradeDetail table to get grades from current and past courses
+        sqlCmd.CommandText = "SELECT * From GradeDetail
+        WHERE StudentId = '" & sqlTableStudent.Rows(0).Item("PersonId") & "'"
+        sqlReader = sqlCmd.ExecuteReader
+        sqlTableGradeDetail.Load(sqlReader)
 
-                ddlAssignedSections.Items.Add("" & sqlTableSections.Rows(i).Item("SectionId") & "  " & sqlTableCourse.Rows(0).Item("CourseCode") & " - " & sqlTableCourse.Rows(0).Item("CourseName") & "")
-            Next
-        End If
         sqlReader.Close()
         sqlConn.Close()
     End Sub
@@ -98,384 +92,471 @@ Public Class StudentRecord
         Me.Close()
     End Sub
 
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        LockAll()
-        resetfields()
-        btnLoadSection.Enabled = True
-        ddlAssignedSections.Enabled = True
-        ddlAssignedSections.BackColor = Drawing.Color.White
-        ddlGradeDetail.Items.Clear()
-    End Sub
-
-    Private Sub btnLoadSection_Click(sender As Object, e As EventArgs) Handles btnLoadSection.Click
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
-        sqlTableDetail.Clear()
-        sqlTableStudents.Clear()
-        ddlEnrolled.Items.Clear()
-
-        If ddlAssignedSections.Text = "Assigned Sections" Then
-            MsgBox("Please choose a section to load.", 64, "Information")
-        Else
-            sqlConn.Open()
-            sqlCmd.Connection = sqlConn
-
-            sqlCmd.CommandText = "SELECT * FROM GradeDetail
-            WHERE SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
-            AND DetailId like '%" & currentterm & "%'"
-            sqlReader = sqlCmd.ExecuteReader
-            sqlTableDetail.Load(sqlReader)
-
-            For Each row As DataRow In sqlTableDetail.Rows
-                sqlTableStudents.Clear()
-
-                sqlCmd.CommandText = "SELECT * FROM Person WHERE PersonId = '" & row.Item("StudentId") & "'"
-                sqlReader = sqlCmd.ExecuteReader
-                sqlTableStudents.Load(sqlReader)
-
-                ddlEnrolled.Items.Add("" & row.Item("StudentId") & " - " & sqlTableStudents.Rows(0).Item("FirstName") & " " & sqlTableStudents.Rows(0).Item("LastName") & "")
-            Next
-
-            btnLoadSection.Enabled = False
-            ddlEnrolled.Enabled = True
-            ddlEnrolled.BackColor = Drawing.Color.White
-            btnLoadDetail.Enabled = True
-            btnCancel.Enabled = True
-            ddlAssignedSections.Enabled = False
-
-            sqlReader.Close()
-            sqlConn.Close()
-        End If
-    End Sub
-
-    Private Sub btnLoadDetail_Click(sender As Object, e As EventArgs) Handles btnLoadDetail.Click
-        'If a student has not been chosen from list
-        If ddlEnrolled.Text = "" Then
-            MsgBox("Please choose a student from the list", 64, "Information")
-
-        Else
-            'Clears ddl and table
-            ddlGradeDetail.Items.Clear()
-            ddlGradeDetail.Text = "" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & " - Grade Detail"
-            sqlTableGrades.Clear()
-
-            sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
-            sqlConn.Open()
-            sqlCmd.Connection = sqlConn
-            sqlCmd.CommandText = "SELECT * FROM GradeDetail
-            WHERE StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'
-            AND SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
-            AND DetailId like '%" & currentterm & "%'"
-
-            sqlReader = sqlCmd.ExecuteReader
-            sqlTableGrades.Load(sqlReader)
-
-            ddlGradeDetail.Items.Add("Grade1 - " & sqlTableGrades.Rows(0).Item("Grade1") & "")
-            ddlGradeDetail.Items.Add("Grade2 - " & sqlTableGrades.Rows(0).Item("Grade2") & "")
-            ddlGradeDetail.Items.Add("Grade3 - " & sqlTableGrades.Rows(0).Item("Grade3") & "")
-            ddlGradeDetail.Items.Add("Grade4 - " & sqlTableGrades.Rows(0).Item("Grade4") & "")
-
-            sqlReader.Close()
-            sqlConn.Close()
-
-            btnEnterGrade.Enabled = True
-            btnFinalGrade.Enabled = True
-            btnAW.Enabled = True
-        End If
-    End Sub
-
-    Private Sub btnEnterGrade_Click(sender As Object, e As EventArgs) Handles btnEnterGrade.Click
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
-        sqlConn.Open()
-        sqlCmd.Connection = sqlConn
-
-        'If instructor has not chosen grade from list
-        If ddlGradeDetail.Text.EndsWith("Detail") Then
-            MsgBox("Please choose a grade to add or edit from the list.", 64, "Information")
-
-            'if the text ends with "- " (i.e. Grade1 - ) that means instructor has not previously added a grade, we would
-            'not ask the instructor if they are sure they want to update the grade
-        Else
-            If ddlGradeDetail.Text.EndsWith("- ") Then
-
-                'Trying to gain a number string from the instructor and converting it to Double
-                Try
-                    enteredgrade = CDbl(InputBox("Enter grade:", "Search"))
-
-                    'Handles exception if use enters something that can't be converted to double (even an empty space)
-                    'gives them a message and exits the Sub
-                Catch ex As InvalidCastException
-                    MsgBox("Please only enter numbers", 64, "Information")
-                    sqlReader.Close()
-                    sqlConn.Close()
-                    Exit Sub
-                End Try
-
-                sqlCmd.CommandText = "UPDATE GradeDetail
-                SET " & ddlGradeDetail.SelectedItem.ToString.Substring(0, 6) & " = " & enteredgrade & "
-                WHERE SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
-                AND DetailId like '%" & currentterm & "%'
-                AND StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'"
-                sqlReader = sqlCmd.ExecuteReader
-
-                MsgBox("Grade successfully added.", 64, "Information")
-
-                'otherwise, if the text is not empty, and it does not end in "- " that means the instructor already added a
-                'grade, we would ask the instructor if they are sure they want to update the grade
-            Else
-                If MsgBox("You have already added a value to this grade, are you sure you want to update it?",
-                            MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "WARNING") = MsgBoxResult.Yes Then
-
-                    'Trying to gain a number string from the instructor and converting it to Double
-                    Try
-                        enteredgrade = CDbl(InputBox("Enter grade:", "Search"))
-
-                        'Handles exception if use enters something that can't be converted to double (even an empty space)
-                        'gives them a message and exits the Sub
-                    Catch ex As InvalidCastException
-                        MsgBox("Please only enter numbers", 64, "Information")
-                        sqlReader.Close()
-                        sqlConn.Close()
-                        Exit Sub
-                    End Try
-
-                    sqlCmd.CommandText = "UPDATE GradeDetail
-                        SET " & ddlGradeDetail.SelectedItem.ToString.Substring(0, 6) & " = " & enteredgrade & "
-                        WHERE SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
-                        AND DetailId like '%" & currentterm & "%'
-                        AND StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'"
-                    sqlReader = sqlCmd.ExecuteReader
-
-                    MsgBox("Grade successfully updated.", 64, "Information")
-                End If
-            End If
-
-            'Refreshes the ddlGradeDetail to reflect grade changes
-            sqlReader.Close()
-            sqlTableGrades.Clear()
-            ddlGradeDetail.Items.Clear()
-            ddlGradeDetail.Text = "" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & " - Grade Detail"
-            sqlCmd.CommandText = "SELECT * FROM GradeDetail
-            WHERE StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'
-            AND SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
-            AND DetailId like '%" & currentterm & "%'"
-            sqlReader = sqlCmd.ExecuteReader
-            sqlTableGrades.Load(sqlReader)
-
-            ddlGradeDetail.Items.Add("Grade1 - " & sqlTableGrades.Rows(0).Item("Grade1") & "")
-            ddlGradeDetail.Items.Add("Grade2 - " & sqlTableGrades.Rows(0).Item("Grade2") & "")
-            ddlGradeDetail.Items.Add("Grade3 - " & sqlTableGrades.Rows(0).Item("Grade3") & "")
-            ddlGradeDetail.Items.Add("Grade4 - " & sqlTableGrades.Rows(0).Item("Grade4") & "")
-        End If
-
-        sqlReader.Close()
-        sqlConn.Close()
-    End Sub
-
-    'Assigns a FinalPercent and FinalGrade to student's record and calculates GPA to add to student's record in Person table
-    Private Sub btnFinalGrade_Click(sender As Object, e As EventArgs) Handles btnFinalGrade.Click
-        sqlTableFinishedCourses.Clear()
-        sqlTableCourseCredits.Clear()
-        credithourscounter = 0
-        totalpointscounter = 0
-        GPA = 0
-
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
-        sqlConn.Open()
-        sqlCmd.Connection = sqlConn
-
-        'If instructor still has not entered all of the course's grades
-        If IsDBNull(sqlTableGrades.Rows(0).Item("Grade1")) Or
-            IsDBNull(sqlTableGrades.Rows(0).Item("Grade2")) Or
-            IsDBNull(sqlTableGrades.Rows(0).Item("Grade3")) Or
-            IsDBNull(sqlTableGrades.Rows(0).Item("Grade4")) Then
-
-            MsgBox("Please add all grades before calculating Final Grade.", 64, "Information")
-
-        ElseIf Not IsDBNull(sqlTableGrades.Rows(0).Item("FinalGrade")) Then
-            MsgBox("A Final Grade of '" & sqlTableGrades.Rows(0).Item("FinalGrade") & "' has already been calculated for this student.", 64, "Information")
-        Else
-            finalpercent = (sqlTableGrades.Rows(0).Item("Grade1") +
-                            sqlTableGrades.Rows(0).Item("Grade2") +
-                            sqlTableGrades.Rows(0).Item("Grade3") +
-                            sqlTableGrades.Rows(0).Item("Grade4")) / 4
-
-            If finalpercent >= 90 Then
-                finalgrade = "A"
-            ElseIf finalpercent >= 80 Then
-                finalgrade = "B"
-            ElseIf finalpercent >= 70 Then
-                finalgrade = "C"
-            ElseIf finalpercent >= 60 Then
-                finalgrade = "D"
-            Else
-                finalgrade = "F"
-            End If
-
-            'Sets FinalPercent and FinalGrade on the specified DetailId on GradeDetail table
-            sqlCmd.CommandText = "UPDATE GradeDetail 
-            SET FinalPercent = " & finalpercent & ",
-            FinalGrade = '" & finalgrade & "'
-            WHERE StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'
-            AND SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
-            AND DetailId like '%" & currentterm & "%'"
-            sqlReader = sqlCmd.ExecuteReader
-            sqlReader.Close()
-
-            'Retrieving all of the student's finished courses for GPA calculation
-            sqlCmd.CommandText = "SELECT * FROM GradeDetail
-            WHERE StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'
-            AND FinalGrade IS NOT NULL"
-            sqlReader = sqlCmd.ExecuteReader
-            sqlTableFinishedCourses.Load(sqlReader)
-            sqlReader.Close()
-
-            For Each row As DataRow In sqlTableFinishedCourses.Rows
-                'Retrieving course credits for GPA calculation
-                sqlCmd.CommandText = "SELECT * FROM Course
-                WHERE CourseCode = '" & row.Item("CourseCode") & "'"
-                sqlReader = sqlCmd.ExecuteReader
-                sqlTableCourseCredits.Load(sqlReader)
-                sqlReader.Close()
-
-                'Accruing student's total credit hours
-                credithourscounter += sqlTableCourseCredits.Rows(0).Item("Credits")
-
-                If row.Item("FinalGrade") = "A" Then
-                    totalpointscounter += 4 * sqlTableCourseCredits.Rows(0).Item("Credits")
-                ElseIf row.Item("FinalGrade") = "B" Then
-                    totalpointscounter += 3 * sqlTableCourseCredits.Rows(0).Item("Credits")
-                ElseIf row.Item("FinalGrade") = "C" Then
-                    totalpointscounter += 2 * sqlTableCourseCredits.Rows(0).Item("Credits")
-                ElseIf row.Item("FinalGrade") = "D" Then
-                    totalpointscounter += 1 * sqlTableCourseCredits.Rows(0).Item("Credits")
-                    'If student got an F there's no need for any total points calculations, as an F is worth 0
-                End If
-            Next
-
-            GPA = totalpointscounter / credithourscounter
-
-            sqlCmd.CommandText = "UPDATE Person SET GPA = " & GPA & "
-            WHERE PersonId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'"
-            sqlReader = sqlCmd.ExecuteReader
-
-            MsgBox("Final percentage of " & finalpercent & "% has been calculated." & vbNewLine & "Final grade = " & finalgrade & "", 64, "Information")
-        End If
-
-        sqlReader.Close()
-        sqlConn.Close()
-    End Sub
-
-    'Assigns an AW to student, dropping them from the course, deletes the record off the DetailId table, and the
-    'SectionId and CourseCode off the CurrentTermEnrollment table
-    Private Sub btnAW_Click(sender As Object, e As EventArgs) Handles btnAW.Click
-        sqlTableEnrollment.Clear()
-
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
-        sqlConn.Open()
-        sqlCmd.Connection = sqlConn
-
-        If MsgBox("You are about to DROP the student " & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "
-from this course, are you sure you want to proceed?",
-                  MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "WARNING") = MsgBoxResult.Yes Then
-
-            confirmdrop = InputBox("Please enter the student's ID:", "Confirm AW")
-
-            'Checks that ID entered by instructor and student's ID is the same before giving AW
-            If confirmdrop.ToString.ToUpper = ddlEnrolled.SelectedItem.ToString.Substring(0, 9) Then
-
-                'Deleting record from GradeDetail table
-                sqlCmd.CommandText = "DELETE FROM GradeDetail
-                WHERE SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
-                AND DetailId like '%" & currentterm & "%'
-                AND StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'"
-                sqlReader = sqlCmd.ExecuteReader
-                sqlReader.Close()
-
-                'Loading CurrentTermEnrollment table to be able to take the course off that table
-                sqlCmd.CommandText = "SELECT * FROM CurrentTermEnrollment
-                WHERE StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'"
-                sqlReader = sqlCmd.ExecuteReader
-                sqlTableEnrollment.Load(sqlReader)
-
-                'The course we are trying to take the student off can be enrolled in either the SectionId1, SectionId2,
-                'SectionId3, or SectionId4 column of the student's record in the CurrentTermEnrollment table.  We are
-                'using this IF statement to go through all possible columns where the course could be in.  If the column
-                'is not null AND its SectionId is the same as the first 5 characters of the ddlAssignedSections (the SectionId)
-                'then the section and course variable are given the correct column names to then be dropped from the
-                'student's record in the CurrentTermEnrollment table.
-                If Not IsDBNull(sqlTableEnrollment.Rows(0).Item("SectionId1")) And
-                    ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) = "" & sqlTableEnrollment.Rows(0).Item("SectionId1") & "" Then
-                    sectionid = "SectionId1"
-                    coursecode = "CourseCode1"
-
-                ElseIf Not IsDBNull(sqlTableEnrollment.Rows(0).Item("SectionId2")) And
-                    ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) = "" & sqlTableEnrollment.Rows(0).Item("SectionId2") & "" Then
-                    sectionid = "SectionId2"
-                    coursecode = "CourseCode2"
-
-                ElseIf Not IsDBNull(sqlTableEnrollment.Rows(0).Item("SectionId3")) And
-                    ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) = "" & sqlTableEnrollment.Rows(0).Item("SectionId3") & "" Then
-                    sectionid = "SectionId3"
-                    coursecode = "CourseCode3"
-
-                Else
-                    sectionid = "SectionId4"
-                    coursecode = "CourseCode4"
-                End If
-
-                'Taking SectionId and CourseCode from the CurrentTermEnrollment table
-                sqlCmd.CommandText = "UPDATE CurrentTermEnrollment
-                SET " & sectionid & " = NULL, " & coursecode & " = NULL
-                WHERE StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'"
-                sqlReader = sqlCmd.ExecuteReader
-
-                'Need to do this because GradeDetail information stays on the ddlGradeDetail, and the student's ID and
-                'name stay on the ddlEnrolled otherwise.  This makes the professor have to load the section again, at which
-                'point the dropped student will no longer show up.
-                'I also want to do this by design, assigning an AW should not be taken lightly and I want the instructor
-                'to have to load the section again and take things slow when assigning AWs.
-                LockAll()
-                resetfields()
-                btnLoadSection.Enabled = True
-                ddlAssignedSections.Enabled = True
-                ddlAssignedSections.BackColor = Drawing.Color.White
-                ddlGradeDetail.Items.Clear()
-
-                MsgBox("Student successfully dropped from course.", 64, "Information")
-
-                'If entered ID noes not match student's ID
-            Else
-                MsgBox("The ID entered does not match the student's ID.", 48, "Error")
-            End If
-        End If
-
-        sqlReader.Close()
-        sqlConn.Close()
-    End Sub
-
-    'To avoid erroneous input of data, everytime the enrolled student is changed, the student's grade detail will
-    'disappear from ddlGradeDetail, and the Enter Grade, Final Grade, and Enter AW buttons will be disabled.  We will
-    'have to click the Load Student Grade Detail button again to enable them
-    Private Sub ddlEnrolled_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlEnrolled.SelectedIndexChanged
+    Private Sub btnEnrolledProgress_Click(sender As Object, e As EventArgs) Handles btnEnrolledProgress.Click
+        ddlCourses.Items.Clear()
+        ddlCourses.Text = "Enrolled Courses"
         ddlGradeDetail.Items.Clear()
         ddlGradeDetail.Text = ""
-        btnEnterGrade.Enabled = False
-        btnFinalGrade.Enabled = False
-        btnAW.Enabled = False
+
+        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
+            + "Password =" + password + ";" + "Database =" + database
+
+        sqlConn.Open()
+        sqlCmd.Connection = sqlConn
+
+        For Each row As DataRow In sqlTableGradeDetail.Rows
+            sqlTableCourses.Clear()
+
+            sqlCmd.CommandText = "SELECT * From Course
+            WHERE CourseCode = '" & row.Item("CourseCode") & "'"
+            sqlReader = sqlCmd.ExecuteReader
+            sqlTableCourses.Load(sqlReader)
+
+
+            'If this is a currently enrolled course, where FinalGrade has not yet been given a value.
+            If IsDBNull(row.Item("FinalGrade")) Then
+                ddlCourses.Items.Add("" & row.Item("CourseCode") & " - " & sqlTableCourses.Rows(0).Item("CourseName") & "")
+            End If
+        Next
+
+        sqlReader.Close()
+        sqlConn.Close()
     End Sub
 
+    Private Sub btnPastGrades_Click(sender As Object, e As EventArgs) Handles btnPastGrades.Click
+        ddlCourses.Items.Clear()
+        ddlCourses.Text = "Past Courses"
+        ddlGradeDetail.Items.Clear()
+        ddlGradeDetail.Text = ""
+
+        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
+            + "Password =" + password + ";" + "Database =" + database
+
+        sqlConn.Open()
+        sqlCmd.Connection = sqlConn
+
+        For Each row As DataRow In sqlTableGradeDetail.Rows
+            sqlTableCourses.Clear()
+
+            sqlCmd.CommandText = "SELECT * From Course
+            WHERE CourseCode = '" & row.Item("CourseCode") & "'"
+            sqlReader = sqlCmd.ExecuteReader
+            sqlTableCourses.Load(sqlReader)
+
+
+            'If this is a past course, where FinalGrade has been given a value.
+            If Not IsDBNull(row.Item("FinalGrade")) Then
+                ddlCourses.Items.Add("" & row.Item("CourseCode") & " - " & sqlTableCourses.Rows(0).Item("CourseName") & "")
+            End If
+        Next
+
+        sqlReader.Close()
+        sqlConn.Close()
+    End Sub
+
+    Private Sub ddlCourses_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlCourses.SelectedIndexChanged
+        sqlTableCourse.Clear()
+
+        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
+            + "Password =" + password + ";" + "Database =" + database
+
+        sqlConn.Open()
+        sqlCmd.Connection = sqlConn
+
+        If Not ddlCourses.Text = "" Then
+            ddlGradeDetail.Items.Clear()
+            ddlGradeDetail.Text = ""
+
+            sqlCmd.CommandText = "SELECT * From GradeDetail
+            WHERE CourseCode = '" & ddlCourses.SelectedItem.ToString.Substring(0, 9) & "'
+            AND StudentId = '" & sqlTableStudent.Rows(0).Item("PersonId") & "'"
+            sqlReader = sqlCmd.ExecuteReader
+            sqlTableCourse.Load(sqlReader)
+
+            ddlGradeDetail.Text = "" & sqlTableCourse.Rows(0).Item("CourseCode") & " Grade Detail"
+            For i = 1 To 4
+                ddlGradeDetail.Items.Add("Grade " & i & " - " & sqlTableCourse.Rows(0).Item("Grade" & i & "") & "")
+            Next
+
+            'If final grade has been assigned
+            If Not IsDBNull(sqlTableCourse.Rows(0).Item("FinalGrade")) Then
+                ddlGradeDetail.Items.Add("Final Grade - " & sqlTableCourse.Rows(0).Item("FinalGrade") & "")
+            End If
+        End If
+
+        sqlReader.Close()
+        sqlConn.Close()
+    End Sub
+
+    '    Private Sub btnLoadSection_Click(sender As Object, e As EventArgs) Handles btnEnrolledProgress.Click
+    '        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
+    '            + "Password =" + password + ";" + "Database =" + database
+
+    '        sqlTableDetail.Clear()
+    '        sqlTableStudents.Clear()
+    '        ddlEnrolled.Items.Clear()
+
+    '        If ddlAssignedSections.Text = "Assigned Sections" Then
+    '            MsgBox("Please choose a section to load.", 64, "Information")
+    '        Else
+    '            sqlConn.Open()
+    '            sqlCmd.Connection = sqlConn
+
+    '            sqlCmd.CommandText = "SELECT * FROM GradeDetail
+    '            WHERE SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
+    '            AND DetailId like '%" & currentterm & "%'"
+    '            sqlReader = sqlCmd.ExecuteReader
+    '            sqlTableDetail.Load(sqlReader)
+
+    '            For Each row As DataRow In sqlTableDetail.Rows
+    '                sqlTableStudents.Clear()
+
+    '                sqlCmd.CommandText = "SELECT * FROM Person WHERE PersonId = '" & row.Item("StudentId") & "'"
+    '                sqlReader = sqlCmd.ExecuteReader
+    '                sqlTableStudents.Load(sqlReader)
+
+    '                ddlEnrolled.Items.Add("" & row.Item("StudentId") & " - " & sqlTableStudents.Rows(0).Item("FirstName") & " " & sqlTableStudents.Rows(0).Item("LastName") & "")
+    '            Next
+
+    '            btnEnrolledProgress.Enabled = False
+    '            ddlEnrolled.Enabled = True
+    '            ddlEnrolled.BackColor = Drawing.Color.White
+    '            btnPastGrades.Enabled = True
+    '            btnCancel.Enabled = True
+    '            ddlAssignedSections.Enabled = False
+
+    '            sqlReader.Close()
+    '            sqlConn.Close()
+    '        End If
+    '    End Sub
+
+    '    Private Sub btnLoadDetail_Click(sender As Object, e As EventArgs) Handles btnPastGrades.Click, btnWeeklySchedule.Click, btnAcademicEvaluation.Click
+    '        'If a student has not been chosen from list
+    '        If ddlEnrolled.Text = "" Then
+    '            MsgBox("Please choose a student from the list", 64, "Information")
+
+    '        Else
+    '            'Clears ddl and table
+    '            ddlGradeDetail.Items.Clear()
+    '            ddlGradeDetail.Text = "" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & " - Grade Detail"
+    '            sqlTableGrades.Clear()
+
+    '            sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
+    '            + "Password =" + password + ";" + "Database =" + database
+
+    '            sqlConn.Open()
+    '            sqlCmd.Connection = sqlConn
+    '            sqlCmd.CommandText = "SELECT * FROM GradeDetail
+    '            WHERE StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'
+    '            AND SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
+    '            AND DetailId like '%" & currentterm & "%'"
+
+    '            sqlReader = sqlCmd.ExecuteReader
+    '            sqlTableGrades.Load(sqlReader)
+
+    '            ddlGradeDetail.Items.Add("Grade1 - " & sqlTableGrades.Rows(0).Item("Grade1") & "")
+    '            ddlGradeDetail.Items.Add("Grade2 - " & sqlTableGrades.Rows(0).Item("Grade2") & "")
+    '            ddlGradeDetail.Items.Add("Grade3 - " & sqlTableGrades.Rows(0).Item("Grade3") & "")
+    '            ddlGradeDetail.Items.Add("Grade4 - " & sqlTableGrades.Rows(0).Item("Grade4") & "")
+
+    '            sqlReader.Close()
+    '            sqlConn.Close()
+
+    '            btnEnterGrade.Enabled = True
+    '            btnFinalGrade.Enabled = True
+    '            btnAW.Enabled = True
+    '        End If
+    '    End Sub
+
+    '    Private Sub btnEnterGrade_Click(sender As Object, e As EventArgs)
+    '        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
+    '            + "Password =" + password + ";" + "Database =" + database
+
+    '        sqlConn.Open()
+    '        sqlCmd.Connection = sqlConn
+
+    '        'If instructor has not chosen grade from list
+    '        If ddlGradeDetail.Text.EndsWith("Detail") Then
+    '            MsgBox("Please choose a grade to add or edit from the list.", 64, "Information")
+
+    '            'if the text ends with "- " (i.e. Grade1 - ) that means instructor has not previously added a grade, we would
+    '            'not ask the instructor if they are sure they want to update the grade
+    '        Else
+    '            If ddlGradeDetail.Text.EndsWith("- ") Then
+
+    '                'Trying to gain a number string from the instructor and converting it to Double
+    '                Try
+    '                    enteredgrade = CDbl(InputBox("Enter grade:", "Search"))
+
+    '                    'Handles exception if use enters something that can't be converted to double (even an empty space)
+    '                    'gives them a message and exits the Sub
+    '                Catch ex As InvalidCastException
+    '                    MsgBox("Please only enter numbers", 64, "Information")
+    '                    sqlReader.Close()
+    '                    sqlConn.Close()
+    '                    Exit Sub
+    '                End Try
+
+    '                sqlCmd.CommandText = "UPDATE GradeDetail
+    '                SET " & ddlGradeDetail.SelectedItem.ToString.Substring(0, 6) & " = " & enteredgrade & "
+    '                WHERE SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
+    '                AND DetailId like '%" & currentterm & "%'
+    '                AND StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'"
+    '                sqlReader = sqlCmd.ExecuteReader
+
+    '                MsgBox("Grade successfully added.", 64, "Information")
+
+    '                'otherwise, if the text is not empty, and it does not end in "- " that means the instructor already added a
+    '                'grade, we would ask the instructor if they are sure they want to update the grade
+    '            Else
+    '                If MsgBox("You have already added a value to this grade, are you sure you want to update it?",
+    '                            MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "WARNING") = MsgBoxResult.Yes Then
+
+    '                    'Trying to gain a number string from the instructor and converting it to Double
+    '                    Try
+    '                        enteredgrade = CDbl(InputBox("Enter grade:", "Search"))
+
+    '                        'Handles exception if use enters something that can't be converted to double (even an empty space)
+    '                        'gives them a message and exits the Sub
+    '                    Catch ex As InvalidCastException
+    '                        MsgBox("Please only enter numbers", 64, "Information")
+    '                        sqlReader.Close()
+    '                        sqlConn.Close()
+    '                        Exit Sub
+    '                    End Try
+
+    '                    sqlCmd.CommandText = "UPDATE GradeDetail
+    '                        SET " & ddlGradeDetail.SelectedItem.ToString.Substring(0, 6) & " = " & enteredgrade & "
+    '                        WHERE SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
+    '                        AND DetailId like '%" & currentterm & "%'
+    '                        AND StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'"
+    '                    sqlReader = sqlCmd.ExecuteReader
+
+    '                    MsgBox("Grade successfully updated.", 64, "Information")
+    '                End If
+    '            End If
+
+    '            'Refreshes the ddlGradeDetail to reflect grade changes
+    '            sqlReader.Close()
+    '            sqlTableGrades.Clear()
+    '            ddlGradeDetail.Items.Clear()
+    '            ddlGradeDetail.Text = "" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & " - Grade Detail"
+    '            sqlCmd.CommandText = "SELECT * FROM GradeDetail
+    '            WHERE StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'
+    '            AND SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
+    '            AND DetailId like '%" & currentterm & "%'"
+    '            sqlReader = sqlCmd.ExecuteReader
+    '            sqlTableGrades.Load(sqlReader)
+
+    '            ddlGradeDetail.Items.Add("Grade1 - " & sqlTableGrades.Rows(0).Item("Grade1") & "")
+    '            ddlGradeDetail.Items.Add("Grade2 - " & sqlTableGrades.Rows(0).Item("Grade2") & "")
+    '            ddlGradeDetail.Items.Add("Grade3 - " & sqlTableGrades.Rows(0).Item("Grade3") & "")
+    '            ddlGradeDetail.Items.Add("Grade4 - " & sqlTableGrades.Rows(0).Item("Grade4") & "")
+    '        End If
+
+    '        sqlReader.Close()
+    '        sqlConn.Close()
+    '    End Sub
+
+    '    'Assigns a FinalPercent and FinalGrade to student's record and calculates GPA to add to student's record in Person table
+    '    Private Sub btnFinalGrade_Click(sender As Object, e As EventArgs)
+    '        sqlTableFinishedCourses.Clear()
+    '        sqlTableCourseCredits.Clear()
+    '        credithourscounter = 0
+    '        totalpointscounter = 0
+    '        GPA = 0
+
+    '        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
+    '            + "Password =" + password + ";" + "Database =" + database
+
+    '        sqlConn.Open()
+    '        sqlCmd.Connection = sqlConn
+
+    '        'If instructor still has not entered all of the course's grades
+    '        If IsDBNull(sqlTableGrades.Rows(0).Item("Grade1")) Or
+    '            IsDBNull(sqlTableGrades.Rows(0).Item("Grade2")) Or
+    '            IsDBNull(sqlTableGrades.Rows(0).Item("Grade3")) Or
+    '            IsDBNull(sqlTableGrades.Rows(0).Item("Grade4")) Then
+
+    '            MsgBox("Please add all grades before calculating Final Grade.", 64, "Information")
+
+    '        ElseIf Not IsDBNull(sqlTableGrades.Rows(0).Item("FinalGrade")) Then
+    '            MsgBox("A Final Grade of '" & sqlTableGrades.Rows(0).Item("FinalGrade") & "' has already been calculated for this student.", 64, "Information")
+    '        Else
+    '            finalpercent = (sqlTableGrades.Rows(0).Item("Grade1") +
+    '                            sqlTableGrades.Rows(0).Item("Grade2") +
+    '                            sqlTableGrades.Rows(0).Item("Grade3") +
+    '                            sqlTableGrades.Rows(0).Item("Grade4")) / 4
+
+    '            If finalpercent >= 90 Then
+    '                finalgrade = "A"
+    '            ElseIf finalpercent >= 80 Then
+    '                finalgrade = "B"
+    '            ElseIf finalpercent >= 70 Then
+    '                finalgrade = "C"
+    '            ElseIf finalpercent >= 60 Then
+    '                finalgrade = "D"
+    '            Else
+    '                finalgrade = "F"
+    '            End If
+
+    '            'Sets FinalPercent and FinalGrade on the specified DetailId on GradeDetail table
+    '            sqlCmd.CommandText = "UPDATE GradeDetail 
+    '            SET FinalPercent = " & finalpercent & ",
+    '            FinalGrade = '" & finalgrade & "'
+    '            WHERE StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'
+    '            AND SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
+    '            AND DetailId like '%" & currentterm & "%'"
+    '            sqlReader = sqlCmd.ExecuteReader
+    '            sqlReader.Close()
+
+    '            'Retrieving all of the student's finished courses for GPA calculation
+    '            sqlCmd.CommandText = "SELECT * FROM GradeDetail
+    '            WHERE StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'
+    '            AND FinalGrade IS NOT NULL"
+    '            sqlReader = sqlCmd.ExecuteReader
+    '            sqlTableFinishedCourses.Load(sqlReader)
+    '            sqlReader.Close()
+
+    '            For Each row As DataRow In sqlTableFinishedCourses.Rows
+    '                'Retrieving course credits for GPA calculation
+    '                sqlCmd.CommandText = "SELECT * FROM Course
+    '                WHERE CourseCode = '" & row.Item("CourseCode") & "'"
+    '                sqlReader = sqlCmd.ExecuteReader
+    '                sqlTableCourseCredits.Load(sqlReader)
+    '                sqlReader.Close()
+
+    '                'Accruing student's total credit hours
+    '                credithourscounter += sqlTableCourseCredits.Rows(0).Item("Credits")
+
+    '                If row.Item("FinalGrade") = "A" Then
+    '                    totalpointscounter += 4 * sqlTableCourseCredits.Rows(0).Item("Credits")
+    '                ElseIf row.Item("FinalGrade") = "B" Then
+    '                    totalpointscounter += 3 * sqlTableCourseCredits.Rows(0).Item("Credits")
+    '                ElseIf row.Item("FinalGrade") = "C" Then
+    '                    totalpointscounter += 2 * sqlTableCourseCredits.Rows(0).Item("Credits")
+    '                ElseIf row.Item("FinalGrade") = "D" Then
+    '                    totalpointscounter += 1 * sqlTableCourseCredits.Rows(0).Item("Credits")
+    '                    'If student got an F there's no need for any total points calculations, as an F is worth 0
+    '                End If
+    '            Next
+
+    '            GPA = totalpointscounter / credithourscounter
+
+    '            sqlCmd.CommandText = "UPDATE Person SET GPA = " & GPA & "
+    '            WHERE PersonId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'"
+    '            sqlReader = sqlCmd.ExecuteReader
+
+    '            MsgBox("Final percentage of " & finalpercent & "% has been calculated." & vbNewLine & "Final grade = " & finalgrade & "", 64, "Information")
+    '        End If
+
+    '        sqlReader.Close()
+    '        sqlConn.Close()
+    '    End Sub
+
+    '    'Assigns an AW to student, dropping them from the course, deletes the record off the DetailId table, and the
+    '    'SectionId and CourseCode off the CurrentTermEnrollment table
+    '    Private Sub btnAW_Click(sender As Object, e As EventArgs)
+    '        sqlTableEnrollment.Clear()
+
+    '        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
+    '            + "Password =" + password + ";" + "Database =" + database
+
+    '        sqlConn.Open()
+    '        sqlCmd.Connection = sqlConn
+
+    '        If MsgBox("You are about to DROP the student " & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "
+    'from this course, are you sure you want to proceed?",
+    '                  MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "WARNING") = MsgBoxResult.Yes Then
+
+    '            confirmdrop = InputBox("Please enter the student's ID:", "Confirm AW")
+
+    '            'Checks that ID entered by instructor and student's ID is the same before giving AW
+    '            If confirmdrop.ToString.ToUpper = ddlEnrolled.SelectedItem.ToString.Substring(0, 9) Then
+
+    '                'Deleting record from GradeDetail table
+    '                sqlCmd.CommandText = "DELETE FROM GradeDetail
+    '                WHERE SectionId = '" & ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) & "'
+    '                AND DetailId like '%" & currentterm & "%'
+    '                AND StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'"
+    '                sqlReader = sqlCmd.ExecuteReader
+    '                sqlReader.Close()
+
+    '                'Loading CurrentTermEnrollment table to be able to take the course off that table
+    '                sqlCmd.CommandText = "SELECT * FROM CurrentTermEnrollment
+    '                WHERE StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'"
+    '                sqlReader = sqlCmd.ExecuteReader
+    '                sqlTableEnrollment.Load(sqlReader)
+
+    '                'The course we are trying to take the student off can be enrolled in either the SectionId1, SectionId2,
+    '                'SectionId3, or SectionId4 column of the student's record in the CurrentTermEnrollment table.  We are
+    '                'using this IF statement to go through all possible columns where the course could be in.  If the column
+    '                'is not null AND its SectionId is the same as the first 5 characters of the ddlAssignedSections (the SectionId)
+    '                'then the section and course variable are given the correct column names to then be dropped from the
+    '                'student's record in the CurrentTermEnrollment table.
+    '                If Not IsDBNull(sqlTableEnrollment.Rows(0).Item("SectionId1")) And
+    '                    ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) = "" & sqlTableEnrollment.Rows(0).Item("SectionId1") & "" Then
+    '                    sectionid = "SectionId1"
+    '                    coursecode = "CourseCode1"
+
+    '                ElseIf Not IsDBNull(sqlTableEnrollment.Rows(0).Item("SectionId2")) And
+    '                    ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) = "" & sqlTableEnrollment.Rows(0).Item("SectionId2") & "" Then
+    '                    sectionid = "SectionId2"
+    '                    coursecode = "CourseCode2"
+
+    '                ElseIf Not IsDBNull(sqlTableEnrollment.Rows(0).Item("SectionId3")) And
+    '                    ddlAssignedSections.SelectedItem.ToString.Substring(0, 5) = "" & sqlTableEnrollment.Rows(0).Item("SectionId3") & "" Then
+    '                    sectionid = "SectionId3"
+    '                    coursecode = "CourseCode3"
+
+    '                Else
+    '                    sectionid = "SectionId4"
+    '                    coursecode = "CourseCode4"
+    '                End If
+
+    '                'Taking SectionId and CourseCode from the CurrentTermEnrollment table
+    '                sqlCmd.CommandText = "UPDATE CurrentTermEnrollment
+    '                SET " & sectionid & " = NULL, " & coursecode & " = NULL
+    '                WHERE StudentId = '" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & "'"
+    '                sqlReader = sqlCmd.ExecuteReader
+
+    '                'Need to do this because GradeDetail information stays on the ddlGradeDetail, and the student's ID and
+    '                'name stay on the ddlEnrolled otherwise.  This makes the professor have to load the section again, at which
+    '                'point the dropped student will no longer show up.
+    '                'I also want to do this by design, assigning an AW should not be taken lightly and I want the instructor
+    '                'to have to load the section again and take things slow when assigning AWs.
+    '                LockAll()
+    '                resetfields()
+    '                btnEnrolledProgress.Enabled = True
+    '                ddlAssignedSections.Enabled = True
+    '                ddlAssignedSections.BackColor = Drawing.Color.White
+    '                ddlGradeDetail.Items.Clear()
+
+    '                MsgBox("Student successfully dropped from course.", 64, "Information")
+
+    '                'If entered ID noes not match student's ID
+    '            Else
+    '                MsgBox("The ID entered does not match the student's ID.", 48, "Error")
+    '            End If
+    '        End If
+
+    '        sqlReader.Close()
+    '        sqlConn.Close()
+    '    End Sub
+
+    '    'To avoid erroneous input of data, everytime the enrolled student is changed, the student's grade detail will
+    '    'disappear from ddlGradeDetail, and the Enter Grade, Final Grade, and Enter AW buttons will be disabled.  We will
+    '    'have to click the Load Student Grade Detail button again to enable them
+    '    Private Sub ddlEnrolled_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddlEnrolled.SelectedIndexChanged
+    '        ddlGradeDetail.Items.Clear()
+    '        ddlGradeDetail.Text = ""
+    '        btnEnterGrade.Enabled = False
+    '        btnFinalGrade.Enabled = False
+    '        btnAW.Enabled = False
+    '    End Sub
+
     'Does not let user write text on the drop down boxes, only select an option
-    Private Sub ddl_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ddlGradeDetail.KeyPress, ddlEnrolled.KeyPress
+    Private Sub ddl_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ddlGradeDetail.KeyPress, ddlCourses.KeyPress
         e.Handled = True
     End Sub
 
@@ -485,8 +566,6 @@ from this course, are you sure you want to proceed?",
             If TypeOf ctrl Is TextBox Or TypeOf ctrl Is ComboBox Then
                 ctrl.Text = ""
             End If
-
-            ddlAssignedSections.Text = "Assigned Sections"
 
             ctrl = Me.GetNextControl(ctrl, True)
         Loop
@@ -503,16 +582,16 @@ from this course, are you sure you want to proceed?",
             ctrl = Me.GetNextControl(ctrl, True)
         Loop
 
-        'User flow control
-        btnLoadSection.Enabled = False
-        btnLoadDetail.Enabled = False
-        btnEnterGrade.Enabled = False
-        btnFinalGrade.Enabled = False
-        btnAW.Enabled = False
-        btnCancel.Enabled = False
-        ddlEnrolled.Enabled = False
-        'lblStudentInfo.Visible = False
-        ddlGradeDetail.Enabled = True
-        ddlGradeDetail.BackColor = Drawing.Color.White
+        ''User flow control
+        'btnEnrolledProgress.Enabled = False
+        'btnPastGrades.Enabled = False
+        'btnEnterGrade.Enabled = False
+        'btnFinalGrade.Enabled = False
+        'btnAW.Enabled = False
+        'btnCancel.Enabled = False
+        'ddlEnrolled.Enabled = False
+        ''lblStudentInfo.Visible = False
+        'ddlGradeDetail.Enabled = True
+        'ddlGradeDetail.BackColor = Drawing.Color.White
     End Sub
 End Class
