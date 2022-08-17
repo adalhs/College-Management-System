@@ -6,12 +6,12 @@ Public Class Registration
     Dim sqlCmd As New SqlCommand
     Dim sqlReader As SqlDataReader   'sqlReader is not an object, does not need "New"
 
-    Dim sqlTableStudent As New DataTable   'invisible table to hold data from Person table
-    Dim sqlTableSection As New DataTable     'invisible table to hold course section data from CourseSection table
-    Dim sqlTableInstructor As New DataTable   'invisible table to hold Instructor data (name is all I need) from Person table
-    Dim sqlTableCourse As New DataTable      'invisible table to hold Course data (name is all I need) from the Course table
+    Dim sqlTableStudent As New DataTable   'table to hold data from Person table
+    Dim sqlTableSection As New DataTable     'table to hold course section data from CourseSection table
+    Dim sqlTableInstructor As New DataTable   'table to hold Instructor data (name is all I need) from Person table
+    Dim sqlTableCourse As New DataTable      'table to hold Course data (name is all I need) from the Course table
 
-    Dim sqlTableEnrollment As New DataTable  'invisible table to hold Enrollment data to see what, if any classes student has already
+    Dim sqlTableEnrollment As New DataTable  'table to hold Enrollment data to see what, if any classes student has already
     'enrolled in.  Student can only enroll in a maximum of 4 courses
 
     Dim sqlTableCourseForDrop As New DataTable  'This datatable will be used to load the course we are going to drop so we
@@ -21,14 +21,9 @@ Public Class Registration
     'and there is no way to know which row of that table the course we want to take off is in, potentially leading to taking
     'off the incorrect amount of money due to different Credits from the Course table.
 
-    Dim sqlTableGradeDetail As New DataTable   'invisible table to hold GradeDetail data so we can add a grade detail for the student
+    Dim sqlTableGradeDetail As New DataTable   'table to hold GradeDetail data so we can add a grade detail for the student
     'for that course in the GradeDetail table when we add a course, remove it when we drop a course, and to check if the student
     'fulfills PreRequisite classes for certain courses and obtained 60 or greater final grade in the Prerequisite course
-
-    Dim server As String = "LAPTOP-11N7BEC8\SQLEXPRESS"
-    Dim username As String = "sa"
-    Dim password As String = "12345678"
-    Dim database As String = "InterMetro"
 
     Dim idlookup As String   'holds StudentId entered by user
     Dim sectionlookup As String   'holds sectionid entered by user
@@ -40,6 +35,8 @@ Public Class Registration
     Dim course As String
 
     Private Sub AdminForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        sqlConn.ConnectionString = connString
+
         ddlMajor.Items.Add("Computer Science")
         ddlMajor.Items.Add("Chemistry")
 
@@ -61,18 +58,15 @@ Public Class Registration
         resetlabelcolor()
         resetfields()
 
-        sqlTableStudent.Clear()    'Clears invisible table
+        sqlTableStudent.Clear()
         idlookup = InputBox("Enter ID:", "Search")
-
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
 
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
         sqlCmd.CommandText = "SELECT * From Person WHERE PersonId = '" & idlookup & "'"
         sqlReader = sqlCmd.ExecuteReader
 
-        sqlTableStudent.Load(sqlReader)     'Loads record matching ID provided to invisible sqlTable
+        sqlTableStudent.Load(sqlReader)     'Loads record matching ID provided to sqlTable
         sqlReader.Close()
         sqlConn.Close()
 
@@ -132,9 +126,6 @@ Public Class Registration
         sqlTableInstructor.Clear()
 
         sectionlookup = InputBox("Enter Section ID:", "Search")
-
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
 
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
@@ -200,9 +191,6 @@ Public Class Registration
         ddlEnrolled.Enabled = True
         ddlEnrolled.BackColor = Color.White
 
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
 
@@ -247,9 +235,6 @@ Public Class Registration
         ddlMajor.Enabled = True
         ddlMajor.BackColor = Color.White
 
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
         sqlCmd.CommandText = "Select * FROM CurrentTermEnrollment WHERE StudentId = '" & idlookup & "'"
@@ -266,9 +251,6 @@ Public Class Registration
     'at the same time.
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         sqlTableCourseForDrop.Clear()
-
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
 
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
@@ -405,9 +387,6 @@ Doing so will get rid of any grades the student has attained in this course and 
 
         section = ""
         course = ""
-
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
 
         sqlConn.Open()
         sqlCmd.Connection = sqlConn

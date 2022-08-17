@@ -5,22 +5,17 @@ Public Class AdminForm
     Dim sqlConn As New SqlConnection  'represents a unique session(connection) to a SQL Server data source
     Dim sqlCmd As New SqlCommand
     Dim sqlReader As SqlDataReader   'sqlReader is not an object, does not need "New"
-    Dim sqlTable As New DataTable   'invisible table to hold temporary data
-
-    Dim server As String = "LAPTOP-11N7BEC8\SQLEXPRESS"
-    Dim username As String = "sa"
-    Dim password As String = "12345678"
-    Dim database As String = "InterMetro"
+    Dim sqlTable As New DataTable   'table to hold temporary data
 
     Dim idlookup As String   'holds PersonId entered by user
 
     Private Sub AdminForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        sqlConn.ConnectionString = connString
+
         ddlPermissions.Text = "Choose one option:"
         ddlPermissions.Items.Add("administrator")
         ddlPermissions.Items.Add("admissions")
         ddlPermissions.Items.Add("registrar")
-        ddlPermissions.Items.Add("financialaid")
-        ddlPermissions.Items.Add("bursar")
         ddlPermissions.Items.Add("student")
         ddlPermissions.Items.Add("faculty")
 
@@ -40,18 +35,15 @@ Public Class AdminForm
         resetlabelcolor()
         resetfields()
 
-        sqlTable.Clear()    'Clears invisible table
+        sqlTable.Clear()    'Clears table
         idlookup = InputBox("Enter ID:", "Search")
-
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
 
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
         sqlCmd.CommandText = "SELECT * From Person WHERE PersonId = '" & idlookup & "'"
         sqlReader = sqlCmd.ExecuteReader
 
-        sqlTable.Load(sqlReader)     'Loads record matching ID provided to invisible sqlTable
+        sqlTable.Load(sqlReader)     'Loads record matching ID provided to sqlTable
         sqlReader.Close()
         sqlConn.Close()
 
@@ -88,9 +80,6 @@ Public Class AdminForm
 
     'Inserts username, password, and role we enter into the Person table in the record with selected PersonId (held in idlookup variable)
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
         sqlTable.Clear()
 
         'Gets all Label controls from the form and sets their color back to Black, in case they were turned red
@@ -142,15 +131,12 @@ Public Class AdminForm
         sqlTable.Clear()
         idlookup = InputBox("Enter ID:", "Search")
 
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
         sqlCmd.CommandText = "SELECT * From Person WHERE PersonId = '" & idlookup & "'"
         sqlReader = sqlCmd.ExecuteReader
 
-        sqlTable.Load(sqlReader)     'Loads record matching ID provided to invisible sqlTable
+        sqlTable.Load(sqlReader)     'Loads record matching ID provided to sqlTable
         sqlReader.Close()
         sqlConn.Close()
 
@@ -189,15 +175,12 @@ Public Class AdminForm
         sqlTable.Clear()
         idlookup = InputBox("Enter username for deletion:", "Delete Account")
 
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
         sqlCmd.CommandText = "SELECT * From Person WHERE Username = '" & idlookup & "'"
         sqlReader = sqlCmd.ExecuteReader
 
-        sqlTable.Load(sqlReader)     'Loads record matching ID provided to invisible sqlTable
+        sqlTable.Load(sqlReader)     'Loads record matching ID provided to sqlTable
 
         'Username entered exists in Person table
         If sqlTable.Rows.Count > 0 Then

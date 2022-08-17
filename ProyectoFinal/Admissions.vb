@@ -5,16 +5,13 @@ Public Class Admissions
     Dim sqlConn As New SqlConnection  'represents a unique session(connection) to a SQL Server data source
     Dim sqlCmd As New SqlCommand
     Dim sqlReader As SqlDataReader    'sqlReader is not an object, does not need "New"
-    Dim sqlTable As New DataTable     'invisible table to hold temporary data
-
-    Dim server As String = "LAPTOP-11N7BEC8\SQLEXPRESS"
-    Dim username As String = "sa"
-    Dim password As String = "12345678"
-    Dim database As String = "InterMetro"
+    Dim sqlTable As New DataTable     'table to hold temporary data
 
     Dim idlookup As String    'holds PersonId entered by user in SearchStudId()
 
     Private Sub FormAdmisions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        sqlConn.ConnectionString = connString
+
         'Validation does not let user enter wrong information in these fields
         'Validation control is in TextBoxValidation.vb
         AssignValidation(Me.txtFirstName, ValidationType.Only_Characters)
@@ -95,9 +92,6 @@ Public Class Admissions
 
     'Inserts student information in the Person table
     Private Sub btnSubmitInfo_Click(sender As Object, e As EventArgs) Handles btnSubmitInfo.Click
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
         'Gets all Label controls from the form and sets their color back to Black, in case they were turned red
         'from the user clicking Submit before they had entered information in a required textbox
         Dim ctrl As Control = Me.GetNextControl(Me, True)
@@ -162,18 +156,15 @@ Public Class Admissions
         'User flow control
         btnSubmitInfo.Enabled = False
 
-        sqlTable.Clear()    'Clears invisible table
+        sqlTable.Clear()
         idlookup = InputBox("Enter Student's ID:", "Student Search")
-
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
 
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
         sqlCmd.CommandText = "SELECT * From Person WHERE PersonId = '" & idlookup & "'"
         sqlReader = sqlCmd.ExecuteReader
 
-        sqlTable.Load(sqlReader)     'Loads record matching ID provided to invisible sqlTable
+        sqlTable.Load(sqlReader)     'Loads record matching ID provided to sqlTable
         sqlReader.Close()
         sqlConn.Close()
 
@@ -230,9 +221,6 @@ Public Class Admissions
         'User flow control
         btnSubmitInfo.Enabled = False
 
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
         resetlabelcolor()
 
         If txtFirstName.Text = "" Or
@@ -288,7 +276,7 @@ Public Class Admissions
         Dim rand As New Random          'Creates random number generator
         Dim randomnum As String         'Temporarily stores one random number generated in a string
         Dim randomid As String          'Accumulator of temporary string numbers
-        Dim rows() As DataRow           'Row in the invisible sqlTable
+        Dim rows() As DataRow           'Row in the sqlTable
 
         Do
             randomid = "M"   'All randomly generated IDs must start with M in the metro campus
@@ -310,7 +298,7 @@ Public Class Admissions
             sqlCmd.CommandText = "SELECT * From Person WHERE (PersonId = '" & randomid & "')"
             sqlReader = sqlCmd.ExecuteReader
 
-            'If there is a selected record, loads it into invisible sqlTable
+            'If there is a selected record, loads it into sqlTable
             sqlTable.Load(sqlReader)
             sqlReader.Close()
             sqlConn.Close()
@@ -318,7 +306,7 @@ Public Class Admissions
             'Adds a row to the sqlTable with the record from the Person table with the PersonId same as the randomid (very unlikely)
             rows = sqlTable.Select("[PersonId]= '" & randomid & "'")
 
-            'If the invisible sqlTable has 1 row, this means that there is already a record with a PersonId the same as randomid, so
+            'If the sqlTable has 1 row, this means that there is already a record with a PersonId the same as randomid, so
             'we cannot assign the randomly generated ID to the new person we are trying to add to the Person table.
             'The loop will run again until the row count is not > 0 (until the randomid is not a PersonId already in Person table)
         Loop While (rows.Count > 0)
@@ -326,7 +314,7 @@ Public Class Admissions
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
         sqlCmd.CommandText = "INSERT INTO Person(PersonId, FirstName, LastName, Age, Email, Telephone, Sex, Address, City, State,
-            Zipcode, Country, HouseIncome, Major, Vaccination)
+            Zipcode, Country, HouseIncome, Major, Vaccination, Role)
             VALUES('" & randomid & "',
             '" & txtFirstName.Text & "',
             '" & txtLastName.Text & "',
@@ -341,7 +329,8 @@ Public Class Admissions
             '" & ddlCountry.Text & "',
             '" & txtIncome.Text & "',
             '" & ddlMajor.Text & "',
-            '" & ddlCovid.Text & "')"
+            '" & ddlCovid.Text & "',
+            ' Unassigned ')"
 
         sqlReader = sqlCmd.ExecuteReader
         sqlReader.Close()

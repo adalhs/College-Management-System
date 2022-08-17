@@ -11,4 +11,6 @@
     'load the sections of the instructor once the Faculty form loads without them having to input any other information
     Public user As String
     Public pass As String
+
+    Public connString = "Server=tcp:testvs.database.windows.net,1433;Initial Catalog=college;Persist Security Info=False;User ID=Visitor;Password=YourPassword@1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
 End Module

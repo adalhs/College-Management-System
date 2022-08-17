@@ -6,11 +6,6 @@ Public Class Login
     Dim sqlReader As SqlDataReader   'sqlReader is not an object, does not need "New"
     Dim sqlTable As New DataTable
 
-    Dim server As String = "LAPTOP-11N7BEC8\SQLEXPRESS"
-    Dim username As String = "sa"
-    Dim password As String = "12345678"
-    Dim database As String = "InterMetro"
-
     'Visual management of the login boxes
     Private Sub txtUsername_Click(sender As Object, e As EventArgs) Handles txtUsername.Click
         'Deletes the text on the username textbox when user clicks on it if it contains the placeholder text "Username"
@@ -53,18 +48,17 @@ Public Class Login
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
 
         'Deleting previous query information from the table so we can use another user's login information
-        'This is an invisible table only used to store data for the process of verifying user's Role
+        'This is a table only used to store data for the process of verifying user's Role
         sqlTable.Clear()
 
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
+        sqlConn.ConnectionString = connString
 
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
         sqlCmd.CommandText = "SELECT * From Person WHERE (Username = '" & txtUsername.Text & "' AND Password = '" & txtPassword.Text & "')"
         sqlReader = sqlCmd.ExecuteReader
 
-        'This is an invisible table only used to store the query and to see what Role the record with the Username and Password
+        'This is a table only used to store the query and to see what Role the record with the Username and Password
         'specified has to take them to their respective page.  If for any reason I need to see this table, I can add a
         'DataGridView to the form and add DataGridView1.DataSource = sqlTable.
         sqlTable.Load(sqlReader)
@@ -76,7 +70,7 @@ Public Class Login
         user = txtUsername.Text
         pass = txtPassword.Text
 
-        'An invisible row is created with the record that has what the user wrote on txtUsername on its Username
+        'A row is created with the record that has what the user wrote on txtUsername on its Username
         'column in the Person table, if there is no record with that Username on the table, the row is not created
         Dim rows() As DataRow = sqlTable.Select("[Username]= '" & txtUsername.Text.Trim & "'")
 
@@ -95,7 +89,7 @@ Public Class Login
             'If the row is created the user exists, and program proceeds to compare what that record has
             'on its Role column to guide the user to the corresponding page on the program
         ElseIf rows.Count > 0 Then
-            If sqlTable.Rows(0).Item("Role") = "admin" Then
+            If sqlTable.Rows(0).Item("Role") = "administrator" Then
                 MenuCode = "0"
             ElseIf sqlTable.Rows(0).Item("Role") = "admissions" Then
                 MenuCode = "1"

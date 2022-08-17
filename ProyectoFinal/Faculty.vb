@@ -6,23 +6,17 @@ Public Class Faculty
     Dim sqlCmd As New SqlCommand
     Dim sqlReader As SqlDataReader   'sqlReader is not an object, does not need "New"
 
-    Dim sqlTableStudents As New DataTable    'invisible table to hold student info, (to get the names of students enrolled in section)
-    Dim sqlTableSections As New DataTable    'invisible table to hold the instructor's sections
-    Dim sqlTableInstructor As New DataTable  'invisible table to hold Instructor data from Person table to get their sections upon form load
-    Dim sqlTableCourse As New DataTable      'invisible table to hold Course data from the Course table
-    Dim sqlTableDetail As New DataTable      'invisible table to hold data from GradeDetail table regarding selected section
-    Dim sqlTableGrades As New DataTable      'invisible table to load student grades into ddlGradeDetail
-    Dim sqlTableFinishedCourses As New DataTable  'invisible table used to hold all DetailIds with student final grades
-    Dim sqlTableCourseCredits As New DataTable  'invisible table to hold all courses, will use to get the credits of the courses
-    'for GPA calculation
+    Dim sqlTableStudents As New DataTable    'table to hold student info, (to get the names of students enrolled in section)
+    Dim sqlTableSections As New DataTable    'table to hold the instructor's sections
+    Dim sqlTableInstructor As New DataTable  'table to hold Instructor data from Person table to get their sections upon form load
+    Dim sqlTableCourse As New DataTable      'table to hold Course data from the Course table
+    Dim sqlTableDetail As New DataTable      'table to hold data from GradeDetail table regarding selected section
+    Dim sqlTableGrades As New DataTable      'table to load student grades into ddlGradeDetail
+    Dim sqlTableFinishedCourses As New DataTable  'table used to hold all DetailIds with student final grades
+    Dim sqlTableCourseCredits As New DataTable  'table to hold all courses, will use to get the credits of the courses for GPA calculation
 
-    Dim sqlTableEnrollment As New DataTable  'invisible table to hold Enrollment data, when giving an AW to students,
-    'they SectionId and CourseCode must also be taken off their record in the CurrentTermEnrollment table
-
-    Dim server As String = "LAPTOP-11N7BEC8\SQLEXPRESS"
-    Dim username As String = "sa"
-    Dim password As String = "12345678"
-    Dim database As String = "InterMetro"
+    Dim sqlTableEnrollment As New DataTable  'table to hold Enrollment data, when giving an AW to students,
+    'the SectionId and CourseCode must also be taken off their record in the CurrentTermEnrollment table
 
     Dim confirmdrop As String    'Inputbox asking for student number to confirm instructor wants to drop student from course
     Dim enteredgrade As Double   'holds InstructorId entered by user
@@ -53,8 +47,7 @@ Public Class Faculty
     'On form load the instructor's assigned sections will be loaded onto the radiobuttons.  An instructor
     'can have a maximum of 6 courses at once.
     Private Sub Faculty_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
+        sqlConn.ConnectionString = connString
 
         LockAll()
 
@@ -108,9 +101,6 @@ Public Class Faculty
     End Sub
 
     Private Sub btnLoadSection_Click(sender As Object, e As EventArgs) Handles btnLoadSection.Click
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
         sqlTableDetail.Clear()
         sqlTableStudents.Clear()
         ddlEnrolled.Items.Clear()
@@ -160,9 +150,6 @@ Public Class Faculty
             ddlGradeDetail.Text = "" & ddlEnrolled.SelectedItem.ToString.Substring(0, 9) & " - Grade Detail"
             sqlTableGrades.Clear()
 
-            sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
             sqlConn.Open()
             sqlCmd.Connection = sqlConn
             sqlCmd.CommandText = "SELECT * FROM GradeDetail
@@ -188,9 +175,6 @@ Public Class Faculty
     End Sub
 
     Private Sub btnEnterGrade_Click(sender As Object, e As EventArgs) Handles btnEnterGrade.Click
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
 
@@ -285,9 +269,6 @@ Public Class Faculty
         totalpointscounter = 0
         GPA = 0
 
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
-
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
 
@@ -377,9 +358,6 @@ Public Class Faculty
     'SectionId and CourseCode off the CurrentTermEnrollment table
     Private Sub btnAW_Click(sender As Object, e As EventArgs) Handles btnAW.Click
         sqlTableEnrollment.Clear()
-
-        sqlConn.ConnectionString = "Server =" + server + ";" + "User ID =" + username + ";" _
-            + "Password =" + password + ";" + "Database =" + database
 
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
