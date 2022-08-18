@@ -184,8 +184,12 @@ Public Class AdminForm
 
         'Username entered exists in Person table
         If sqlTable.Rows.Count > 0 Then
-            If MsgBox("Are you sure you want to DELETE the account '" & sqlTable.Rows(0).Item("Username") & "' belonging to " & sqlTable.Rows(0).Item("FirstName") & " " & sqlTable.Rows(0).Item("LastName") & "?",
-                      MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "WARNING") = MsgBoxResult.Yes Then
+            If sqlTable.Rows(0).Item("Role") = "administrator" Then
+                MsgBox("You cannot delete an administrator's account through this portal, please contact support.",
+                                MsgBoxStyle.Critical, "WARNING")
+
+            ElseIf MsgBox("Are you sure you want to DELETE the account '" & sqlTable.Rows(0).Item("Username") & "' belonging to " & sqlTable.Rows(0).Item("FirstName") & " " & sqlTable.Rows(0).Item("LastName") & "?",
+                   MsgBoxStyle.Critical + MsgBoxStyle.YesNo, "WARNING") = MsgBoxResult.Yes Then
 
                 'Setting it to NULL and not "" because of the check with IsDBNull in the btnAddUser_Click Sub
                 sqlCmd.CommandText = "UPDATE Person Set Username = NULL, Password = NULL WHERE Username = '" & idlookup & "'"
@@ -210,16 +214,23 @@ Public Class AdminForm
     Public Sub UpdateUserInfo()
         sqlConn.Open()
         sqlCmd.Connection = sqlConn
-        sqlCmd.CommandText = "UPDATE Person SET Role = '" & ddlPermissions.Text & "'
+
+        If sqlTable.Rows(0).Item("Role") = "administrator" Then
+            MsgBox("You cannot change an administrator's account access permissions through this portal, please contact support.",
+                            MsgBoxStyle.Critical, "WARNING")
+        Else
+            sqlCmd.CommandText = "UPDATE Person SET Role = '" & ddlPermissions.Text & "'
         WHERE PersonId = '" & idlookup & "'"
 
-        sqlReader = sqlCmd.ExecuteReader
-        sqlReader.Close()
-        sqlConn.Close()
-        MsgBox("The permissions of account '" & sqlTable.Rows(0).Item("Username") & "' have been successfully changed to '" & ddlPermissions.Text & "'.", 64, "Information")
+            sqlReader = sqlCmd.ExecuteReader
+            sqlReader.Close()
+            MsgBox("The permissions of account '" & sqlTable.Rows(0).Item("Username") & "' have been successfully changed to '" & ddlPermissions.Text & "'.", 64, "Information")
 
-        resetfields()
-        LockAll()
+            resetfields()
+            LockAll()
+        End If
+
+        sqlConn.Close()
     End Sub
 
     'Does not let user write text on the drop down boxes, only select an option
